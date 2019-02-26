@@ -1,48 +1,32 @@
 import React, { Component } from "react";
-import NavBar from "./components/navbar";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+
 import Home from "./components/pages/home";
+import About from "./components/pages/about";
+import Faq from "./components/pages/faq";
+import Login from "./components/pages/login";
+import Register from "./components/pages/register";
+import Navbar from "./components/navbar";
+import Footer from "./components/footer";
 
 import "./App.css";
 
 class App extends Component {
   render() {
     return (
-      <React.Fragment>
-        <header>
-          <NavBar />
-        </header>
-
-        <main className="container">
-          <Home />
-        </main>
-
-        <footer
-          className="footer mt-auto py-3"
-          style={{ position: "absolute", left: "0", bottom: "0", right: "0" }}
-        >
-          <div className="container" style={{ display: "inline-block" }}>
-            <span className="text-muted" style={{ color: "#fff" }}>
-              {" "}
-              <small>
-                <strong>eSocial © 2019</strong>
-              </small>
-            </span>{" "}
-            &nbsp;
-            <img
-              src="https://img.icons8.com/color/24/000000/facebook.png"
-              style={{ marginRight: "6px" }}
-            />
-            <img
-              src="https://img.icons8.com/color/24/000000/twitter.png"
-              style={{ marginRight: "6px" }}
-            />
-            <img
-              src="https://img.icons8.com/color/24/000000/instagram-new.png"
-              style={{ marginRight: "6px" }}
-            />
+      <Router>
+        <div>
+          <Navbar />
+          <div>
+            <Route exact path="/" component={Home} />
+            <Route path="/about" component={About} />
+            <Route path="/faq" component={Faq} />
+            <Route path="/login" component={Login} />
+            <Route path="/register" component={Register} />
           </div>
-        </footer>
-      </React.Fragment>
+          <Footer />
+        </div>
+      </Router>
     );
   }
 }
