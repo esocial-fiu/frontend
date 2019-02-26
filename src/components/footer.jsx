@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <footer
       className="footer mt-auto py-3"
-      style={{ position: "absolute", left: "0", bottom: "0", right: "0" }}
+      style={{ position: "absolute", left: "10px", bottom: "0", right: "0" }}
     >
       <div style={{ display: "inline-block", backgroundColor: "#fff" }}>
         <span className="text-muted" style={{ color: "#fff" }}>
