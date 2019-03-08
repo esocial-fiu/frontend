@@ -1,8 +1,46 @@
 import React, { Component } from "react";
 import MaterialIcon from "material-icons-react";
 import { Link } from "react-router-dom";
+import Axios from "axios";
 
 class NavBar extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      user: null
+    };
+  }
+
+  fetchUser() {
+    const vm = this;
+    Axios({
+      url: "http://ec2-52-23-171-165.compute-1.amazonaws.com:8000/graphql",
+      method: "post",
+      data: {
+        query: `query {
+    me{
+      id,
+      firstName,
+      lastName,
+      email,
+      birthday,
+      sex
+      }
+    }`
+      }
+    }).then(result => {
+      vm.setState({
+        user: result.data.data
+      });
+      console.log(result);
+      console.log(vm.state.user.me.firstName);
+    });
+  }
+
+  componentDidMount() {
+    this.fetchUser();
+  }
+
   render() {
     return (
       <nav className="navbar navbar-expand-lg navbar navbar-dark bg-dark navbar-static-top">
@@ -34,6 +72,11 @@ class NavBar extends Component {
               Faq
             </Link>
           </li>
+          {/* <li className="nav-item">
+            <Link to="/faq" className="nav-link" style={{ fontSize: "17px" }}>
+              {this.state.user ? this.state.user.me.firstName : "null"}
+            </Link>
+          </li> */}
         </ul>
       </nav>
     );
