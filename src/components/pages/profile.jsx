@@ -183,6 +183,14 @@ class Profile extends Component {
             >
               Edit Profile
             </Link>
+            <t />{" "}
+            <Link
+              to="/events"
+              className="btn btn-outline-dark btn-lg"
+              role="button"
+            >
+              Events
+            </Link>
           </Card.Body>
         </Card>
       </div>

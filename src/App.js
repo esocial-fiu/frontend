@@ -10,6 +10,7 @@ import Navbar from "./components/navbar";
 import Footer from "./components/footer";
 import Profile from "./components/pages/profile";
 import EditProfile from "./components/pages/editProfile";
+import Events from "./components/pages/events";
 
 import "./App.css";
 
@@ -27,6 +28,7 @@ class App extends Component {
             <Route path="/register" component={Register} />
             <Route path="/profile" component={Profile} />
             <Route path="/editprofile" component={EditProfile} />
+            <Route path="/events" component={Events} />
           </div>
           <Footer />
         </div>
