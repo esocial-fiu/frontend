@@ -8,6 +8,8 @@ import Login from "./components/pages/login";
 import Register from "./components/pages/register";
 import Navbar from "./components/navbar";
 import Footer from "./components/footer";
+import Profile from "./components/pages/profile";
+import EditProfile from "./components/pages/editProfile";
 
 import "./App.css";
 
@@ -23,6 +25,8 @@ class App extends Component {
             <Route path="/faq" component={Faq} />
             <Route path="/login" component={Login} />
             <Route path="/register" component={Register} />
+            <Route path="/profile" component={Profile} />
+            <Route path="/editprofile" component={EditProfile} />
           </div>
           <Footer />
         </div>

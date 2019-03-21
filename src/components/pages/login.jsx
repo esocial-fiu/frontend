@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Card from "react-bootstrap/Card";
+import { Link } from "react-router-dom";
 
 class Login extends Component {
   render() {
@@ -15,18 +16,22 @@ class Login extends Component {
           }}
         >
           <Card.Body>
-           <h1> Login </h1>
-				    <input type = "text" name= "Email" placeholder = "Email"></input>
-            <br></br>
-            <br></br>
-            <input type = "password" name= "Password" placeholder = "Password"></input>
-            <br></br>
-            <br></br>
-            <button>Login</button> <t></t> <button>Forgot Password</button> 
-           </Card.Body>
+            <h1> Login </h1>
+            <input type="text" name="Email" placeholder="Email" />
+            <br />
+            <br />
+            <input type="password" name="Password" placeholder="Password" />
+            <br />
+            <br />
+            <button>
+              {" "}
+              <Link to="/profile" style={{ color: "black" }}>
+                Login{" "}
+              </Link>
+            </button>{" "}
+            <t /> <button>Forgot Password</button>
+          </Card.Body>
         </Card>
-
-        
       </div>
     );
   }
