@@ -58,22 +58,31 @@ class Register extends Component {
               </Form.Group>
 
               <Form.Row>
-                <Form.Group as={Col} controlId="formGridCity">
-                  <Form.Label>City</Form.Label>
-                  <Form.Control />
-                </Form.Group>
-
                 <Form.Group as={Col} controlId="formGridState">
-                  <Form.Label>State</Form.Label>
+                  <Form.Label>Hobbies</Form.Label>
                   <Form.Control as="select">
                     <option>Choose...</option>
-                    <option>...</option>
+                    <option>Coding</option>
+                    <option>Roller Skating</option>
                   </Form.Control>
                 </Form.Group>
 
-                <Form.Group as={Col} controlId="formGridZip">
-                  <Form.Label>Zip</Form.Label>
-                  <Form.Control />
+                <Form.Group as={Col} controlId="formGridState">
+                  <Form.Label>Sports</Form.Label>
+                  <Form.Control as="select">
+                    <option>Choose...</option>
+                    <option>Soccer</option>
+                    <option>Volleyball</option>
+                  </Form.Control>
+                </Form.Group>
+
+                <Form.Group as={Col} controlId="formGridState">
+                  <Form.Label>School Subjects</Form.Label>
+                  <Form.Control as="select">
+                    <option>Choose...</option>
+                    <option>Mathematics</option>
+                    <option>Programming I</option>
+                  </Form.Control>
                 </Form.Group>
               </Form.Row>
 
