@@ -3,6 +3,21 @@ import { Col, Form, Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 class Register extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      user: null,
+      newUser: {
+        newFname: "",
+        newLname: "",
+        newEmail: "",
+        newBirthday: "",
+        newSex: "",
+        newPassword: "",
+        newCategories: []
+      }
+    };
+  }
   render() {
     return (
       <div
