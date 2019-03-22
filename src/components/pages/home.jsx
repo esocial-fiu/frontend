@@ -20,7 +20,7 @@ class Home extends Component {
             <p>A place where strangers with common interests can meet</p>
             <Link
               to="/about"
-              className="btn btn-outline-light btn-lg"
+              className="btn btn-outline-dark btn-lg"
               role="button"
             >
               Learn more

@@ -44,13 +44,13 @@ class Login extends Component {
 
               <Form.Group as={Row}>
                 <Col sm={{ span: 10, offset: 2 }}>
-                  <Button>
+                  <Button variant="dark">
                     <Link to="/profile" style={{ color: "white" }}>
                       Sign in
                     </Link>
                   </Button>
                   &nbsp;
-                  <Button>
+                  <Button variant="dark">
                     <Link to="/profile" style={{ color: "white" }}>
                       Forgot Password
                     </Link>

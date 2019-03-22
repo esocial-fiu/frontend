@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Col, Form, Card, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 class Register extends Component {
   render() {
@@ -42,12 +43,10 @@ class Register extends Component {
                   </Form.Control>
                 </Form.Group>
               </Form.Row>
-
               <Form.Group controlId="formGridBirthday">
                 <Form.Label>Birthday</Form.Label>
                 <Form.Control placeholder="MM/DD/YYYY" />
               </Form.Group>
-
               <Form.Group controlId="formGridPassword">
                 <Form.Label>Password</Form.Label>
                 <Form.Control type="password" placeholder="Password" />
@@ -56,7 +55,6 @@ class Register extends Component {
                 <Form.Label>Confirm Password*</Form.Label>
                 <Form.Control type="password" placeholder="Confirm Password*" />
               </Form.Group>
-
               <Form.Row>
                 <Form.Group as={Col} controlId="formGridState">
                   <Form.Label>Hobbies</Form.Label>
@@ -85,7 +83,6 @@ class Register extends Component {
                   </Form.Control>
                 </Form.Group>
               </Form.Row>
-
               <Form.Group id="formGridCheckbox">
                 <Form.Check
                   type="checkbox"
@@ -93,9 +90,15 @@ class Register extends Component {
                   label="Agree to terms and conditions"
                 />
               </Form.Group>
-
-              <Button variant="primary" type="submit">
+              <Button variant="dark" type="submit">
                 Submit
+              </Button>
+              &nbsp;
+              <Button variant="dark" type="submit">
+                {" "}
+                <Link to="/" style={{ color: "white" }}>
+                  Cancel
+                </Link>
               </Button>
             </Form>
           </Card.Body>
