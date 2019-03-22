@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Axios from "axios";
-import { Row, Col, Form, Card, Button } from "react-bootstrap";
+import { Row, Col, Form, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 class EditProfile extends Component {
@@ -82,7 +82,7 @@ class EditProfile extends Component {
                       this.state.user ? this.state.user.me.firstName : "null"
                     }
                     value={this.state.editUser.editedFname}
-                    onChange
+                    onChange={this.handleSubmit}
                   />
                 </Col>
               </Form.Group>
@@ -170,7 +170,6 @@ class EditProfile extends Component {
             >
               Cancel
             </Link>
-            <Button type="submit" /> Submit
           </Card.Body>
         </Card>
       </div>
