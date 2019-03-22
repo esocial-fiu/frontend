@@ -1,13 +1,23 @@
 import React, { Component } from "react";
-import Card from "react-bootstrap/Card";
 import Axios from "axios";
+import { Row, Col, Form, Card, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 class EditProfile extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: null
+      user: null,
+      editUser: {
+        editedFname: "",
+        editedLname: "",
+        editedEmail: "",
+        editedBirthday: "",
+        editedSex: "",
+        editedCategories: []
+      }
     };
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   fetchUser() {
@@ -36,7 +46,10 @@ class EditProfile extends Component {
       });
     });
   }
-
+  handleSubmit = event => {
+    const ue = event.target.value;
+    console.log(ue);
+  };
   componentDidMount() {
     this.fetchUser();
   }
@@ -57,120 +70,107 @@ class EditProfile extends Component {
             {/* <Card.Subtitle className="mb-2 text-muted">
               personal details
             </Card.Subtitle> */}
-            <div>
-              <form>
-                <div className="form-group row">
-                  <label
-                    htmlFor="inputFirstName"
-                    className="col-sm-2 col-form-label"
+            <Form onSubmit={this.handleSubmit}>
+              <Form.Group as={Row} controlId="formFirstName">
+                <Form.Label column sm="2">
+                  First Name
+                </Form.Label>
+                <Col sm="10">
+                  <Form.Control
+                    type="text"
+                    placeholder={
+                      this.state.user ? this.state.user.me.firstName : "null"
+                    }
+                    value={this.state.editUser.editedFname}
+                    onChange
+                  />
+                </Col>
+              </Form.Group>
+              <Form.Group as={Row} controlId="formLastName">
+                <Form.Label column sm="2">
+                  Last Name
+                </Form.Label>
+                <Col sm="10">
+                  <Form.Control
+                    placeholder={
+                      this.state.user ? this.state.user.me.lastName : "null"
+                    }
+                  />
+                </Col>
+              </Form.Group>
+              <Form.Group as={Row} controlId="formEmail">
+                <Form.Label column sm="2">
+                  Email
+                </Form.Label>
+                <Col sm="10">
+                  <Form.Control
+                    placeholder={
+                      this.state.user ? this.state.user.me.email : "null"
+                    }
+                  />
+                </Col>
+              </Form.Group>
+              <Form.Group as={Row} controlId="formBirthday">
+                <Form.Label column sm="2">
+                  Birthday
+                </Form.Label>
+                <Col sm="10">
+                  <Form.Control
+                    placeholder={
+                      this.state.user ? this.state.user.me.birthday : "null"
+                    }
+                  />
+                </Col>
+              </Form.Group>
+              <Form.Group as={Row} controlId="formSex">
+                <Form.Label column sm="2">
+                  Sex
+                </Form.Label>
+                <Col sm="10">
+                  <Form.Control
+                    placeholder={
+                      this.state.user ? this.state.user.me.sex : "null"
+                    }
+                    as="select"
                   >
-                    First Name
-                  </label>
-                  <div className="col-sm-10">
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="inputFirstName"
-                      value={
-                        this.state.user ? this.state.user.me.firstName : "null"
-                      }
-                    />
-                  </div>
-                </div>
-                <div className="form-group row">
-                  <label
-                    htmlFor="inputLastName"
-                    className="col-sm-2 col-form-label"
-                  >
-                    Last Name
-                  </label>
-                  <div className="col-sm-10">
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="inputLastName"
-                      value={
-                        this.state.user ? this.state.user.me.lastName : "null"
-                      }
-                    />
-                  </div>
-                </div>
-                <div className="form-group row">
-                  <label
-                    htmlFor="inputEmail"
-                    className="col-sm-2 col-form-label"
-                  >
-                    Email
-                  </label>
-                  <div className="col-sm-10">
-                    <input
-                      type="email"
-                      className="form-control"
-                      id="inputEmail"
-                      value={
-                        this.state.user ? this.state.user.me.email : "null"
-                      }
-                    />
-                  </div>
-                </div>
-                <div className="form-group row">
-                  <label
-                    htmlFor="inputBirthday"
-                    className="col-sm-2 col-form-label"
-                  >
-                    Birthday
-                  </label>
-                  <div className="col-sm-10">
-                    <input
-                      type="birthday"
-                      className="form-control"
-                      id="inputBirthday"
-                      value={
-                        this.state.user ? this.state.user.me.birthday : "null"
-                      }
-                    />
-                  </div>
-                </div>
-                <div className="form-group row">
-                  <label
-                    htmlFor="staticSex"
-                    className="col-sm-2 col-form-label"
-                  >
-                    Sex
-                  </label>
-                  <div className="col-sm-10">
-                    <input
-                      type="text"
-                      readOnly
-                      className="form-control-plaintext"
-                      id="staticSex"
-                      value={this.state.user ? this.state.user.me.sex : "null"}
-                    />
-                  </div>
-                </div>
-                <div className="form-group row">
-                  <label
-                    htmlFor="staticCategories"
-                    className="col-sm-2 col-form-label"
-                  >
-                    Category Options
-                  </label>
-                  <div className="col-sm-10">
-                    <input
-                      type="text"
-                      readOnly
-                      className="form-control-plaintext"
-                      id="staticCategories"
-                      value={
-                        this.state.user
-                          ? this.state.user.me.categoryOptions
-                          : "null"
-                      }
-                    />
-                  </div>
-                </div>
-              </form>
-            </div>
+                    <option>M</option>
+                    <option>F</option>
+                  </Form.Control>
+                </Col>
+              </Form.Group>
+              <Form.Group as={Row} controlId="formCategories">
+                <Form.Label column sm="2">
+                  Categories
+                </Form.Label>
+                <Col sm="10">
+                  <Form.Control
+                    placeholder={
+                      this.state.user
+                        ? this.state.user.me.categoryOptions.map(
+                            category => category.name + " "
+                          )
+                        : "null"
+                    }
+                  />
+                </Col>
+              </Form.Group>
+            </Form>
+            <Link
+              to="/profile"
+              className="btn btn-outline-dark btn-lg"
+              role="button"
+            >
+              Save
+            </Link>
+            &nbsp;
+            <Link
+              to="/profile"
+              className="btn btn-outline-dark btn-lg"
+              role="button"
+            >
+              Cancel
+            </Link>
+            <Button type="submit" /> Submit
           </Card.Body>
         </Card>
       </div>
