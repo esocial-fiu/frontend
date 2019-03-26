@@ -19,6 +19,7 @@ class Register extends Component {
       }
     };
 
+    // IMPORTANT!!
     this.onChange = this.onChange.bind(this);
     this.onChangeCategory = this.onChangeCategory.bind(this);
     this.submit = this.submit.bind(this);
@@ -41,7 +42,6 @@ class Register extends Component {
   }
 
   submit() {
-    const vm = this;
     Axios({
       url: "http://ec2-52-23-171-165.compute-1.amazonaws.com:8000/graphql",
       method: "post",
