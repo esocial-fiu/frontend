@@ -12,7 +12,7 @@ class Login extends Component {
       >
         <Card
           style={{
-            width: "40%",
+            width: "55%",
             marginTop: "30px"
           }}
         >
@@ -22,7 +22,7 @@ class Login extends Component {
                 <Form.Label column sm={2}>
                   Email
                 </Form.Label>
-                <Col sm={10}>
+                <Col sm={8}>
                   <Form.Control type="email" placeholder="Email" />
                 </Col>
               </Form.Group>
@@ -31,7 +31,7 @@ class Login extends Component {
                 <Form.Label column sm={2}>
                   Password
                 </Form.Label>
-                <Col sm={10}>
+                <Col sm={8}>
                   <Form.Control type="password" placeholder="Password" />
                 </Col>
               </Form.Group>

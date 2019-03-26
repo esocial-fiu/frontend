@@ -9,7 +9,10 @@ class Home extends Component {
         <div className="container">
           <div
             className="jumbotron"
-            style={{ background: "rgba(0,0,0,0.0001)" }}
+            style={{
+              background: "rgba(0,0,0,0.0001)",
+              justifyContent: "center"
+            }}
           >
             <h1 className="display-4">Welcome, world!</h1>
             <p className="lead">
