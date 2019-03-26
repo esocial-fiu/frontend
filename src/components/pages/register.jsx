@@ -1,70 +1,123 @@
 import React, { Component } from "react";
-import InputGroup from "react-bootstrap/InputGroup";
-import FormControl from "react-bootstrap/FormControl";
+import { Col, Form, Card, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 class Register extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      user: null,
+      newUser: {
+        newFname: "",
+        newLname: "",
+        newEmail: "",
+        newBirthday: "",
+        newSex: "",
+        newPassword: "",
+        newCategories: []
+      }
+    };
+  }
   render() {
     return (
       <div
         className="container"
         style={{ display: "flex", justifyContent: "center" }}
       >
-        <div
+        <Card
           style={{
-            width: "80%",
+            width: "70%",
             marginTop: "30px"
           }}
         >
-          <InputGroup className="mb-3">
-            <InputGroup.Prepend>
-              <InputGroup.Text id="basic-addon1">@</InputGroup.Text>
-            </InputGroup.Prepend>
-            <FormControl
-              placeholder="Username"
-              aria-label="Username"
-              aria-describedby="basic-addon1"
-            />
-          </InputGroup>
+          <Card.Body>
+            <Form>
+              <Form.Row>
+                <Form.Group as={Col} controlId="formGridFname">
+                  <Form.Label>First Name</Form.Label>
+                  <Form.Control type="text" placeholder="Enter first name" />
+                </Form.Group>
 
-          <InputGroup className="mb-3">
-            <FormControl
-              placeholder="Recipient's username"
-              aria-label="Recipient's username"
-              aria-describedby="basic-addon2"
-            />
-            <InputGroup.Append>
-              <InputGroup.Text id="basic-addon2">@example.com</InputGroup.Text>
-            </InputGroup.Append>
-          </InputGroup>
+                <Form.Group as={Col} controlId="formGridLname">
+                  <Form.Label>Last Name</Form.Label>
+                  <Form.Control type="text" placeholder="Enter last name" />
+                </Form.Group>
+              </Form.Row>
+              <Form.Row>
+                <Form.Group as={Col} controlId="formGridEmail">
+                  <Form.Label>Email</Form.Label>
+                  <Form.Control type="email" placeholder="Enter email" />
+                </Form.Group>
 
-          <label htmlFor="basic-url">Your vanity URL</label>
-          <InputGroup className="mb-3">
-            <InputGroup.Prepend>
-              <InputGroup.Text id="basic-addon3">
-                https://example.com/users/
-              </InputGroup.Text>
-            </InputGroup.Prepend>
-            <FormControl id="basic-url" aria-describedby="basic-addon3" />
-          </InputGroup>
+                <Form.Group controlId="formGridState">
+                  <Form.Label>Sex</Form.Label>
+                  <Form.Control as="select" placeholder="Choose..">
+                    <option>Choose...</option>
+                    <option>F</option>
+                    <option>M</option>
+                  </Form.Control>
+                </Form.Group>
+              </Form.Row>
+              <Form.Group controlId="formGridBirthday">
+                <Form.Label>Birthday</Form.Label>
+                <Form.Control placeholder="MM/DD/YYYY" />
+              </Form.Group>
+              <Form.Group controlId="formGridPassword">
+                <Form.Label>Password</Form.Label>
+                <Form.Control type="password" placeholder="Password" />
+              </Form.Group>
+              <Form.Group controlId="formGridPassword2">
+                <Form.Label>Confirm Password*</Form.Label>
+                <Form.Control type="password" placeholder="Confirm Password*" />
+              </Form.Group>
+              <Form.Row>
+                <Form.Group as={Col} controlId="formGridState">
+                  <Form.Label>Hobbies</Form.Label>
+                  <Form.Control as="select">
+                    <option>Choose...</option>
+                    <option>Coding</option>
+                    <option>Roller Skating</option>
+                  </Form.Control>
+                </Form.Group>
 
-          <InputGroup className="mb-3">
-            <InputGroup.Prepend>
-              <InputGroup.Text>$</InputGroup.Text>
-            </InputGroup.Prepend>
-            <FormControl aria-label="Amount (to the nearest dollar)" />
-            <InputGroup.Append>
-              <InputGroup.Text>.00</InputGroup.Text>
-            </InputGroup.Append>
-          </InputGroup>
+                <Form.Group as={Col} controlId="formGridState">
+                  <Form.Label>Sports</Form.Label>
+                  <Form.Control as="select">
+                    <option>Choose...</option>
+                    <option>Soccer</option>
+                    <option>Volleyball</option>
+                  </Form.Control>
+                </Form.Group>
 
-          <InputGroup>
-            <InputGroup.Prepend>
-              <InputGroup.Text>With textarea</InputGroup.Text>
-            </InputGroup.Prepend>
-            <FormControl as="textarea" aria-label="With textarea" />
-          </InputGroup>
-        </div>
-        ;
+                <Form.Group as={Col} controlId="formGridState">
+                  <Form.Label>School Subjects</Form.Label>
+                  <Form.Control as="select">
+                    <option>Choose...</option>
+                    <option>Mathematics</option>
+                    <option>Programming I</option>
+                  </Form.Control>
+                </Form.Group>
+              </Form.Row>
+              <Form.Group id="formGridCheckbox">
+                <Form.Check
+                  type="checkbox"
+                  required
+                  label="Agree to terms and conditions"
+                />
+              </Form.Group>
+              <Button variant="dark" type="submit">
+                Submit
+              </Button>
+              &nbsp;
+              <Button variant="dark" type="submit">
+                {" "}
+                <Link to="/" style={{ color: "white" }}>
+                  Cancel
+                </Link>
+              </Button>
+            </Form>
+          </Card.Body>
+        </Card>
       </div>
     );
   }

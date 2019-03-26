@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import Card from "react-bootstrap/Card";
 import Axios from "axios";
 import { Link } from "react-router-dom";
+import { Row, Col, Form, Card } from "react-bootstrap";
 
 class Profile extends Component {
   constructor(props) {
@@ -55,127 +55,92 @@ class Profile extends Component {
         >
           <Card.Body>
             <Card.Title>My Profile</Card.Title>
-            {/* <Card.Subtitle className="mb-2 text-muted">
-              personal details
-            </Card.Subtitle> */}
-            <div>
-              <form>
-                <div className="form-group row">
-                  <label
-                    htmlFor="staticFirstName"
-                    className="col-sm-2 col-form-label"
-                  >
-                    First Name
-                  </label>
-                  <div className="col-sm-10">
-                    <input
-                      type="text"
-                      readOnly
-                      className="form-control-plaintext"
-                      id="staticFirstName"
-                      value={
-                        this.state.user ? this.state.user.me.firstName : "null"
-                      }
-                    />
-                  </div>
-                </div>
-                <div className="form-group row">
-                  <label
-                    htmlFor="staticLastName"
-                    className="col-sm-2 col-form-label"
-                  >
-                    Last Name
-                  </label>
-                  <div className="col-sm-10">
-                    <input
-                      type="text"
-                      readOnly
-                      className="form-control-plaintext"
-                      id="staticLastName"
-                      value={
-                        this.state.user ? this.state.user.me.lastName : "null"
-                      }
-                    />
-                  </div>
-                </div>
-                <div className="form-group row">
-                  <label
-                    htmlFor="staticEmail"
-                    className="col-sm-2 col-form-label"
-                  >
-                    Email
-                  </label>
-                  <div className="col-sm-10">
-                    <input
-                      type="text"
-                      readOnly
-                      className="form-control-plaintext"
-                      id="staticEmail"
-                      value={
-                        this.state.user ? this.state.user.me.email : "null"
-                      }
-                    />
-                  </div>
-                </div>
-                <div className="form-group row">
-                  <label
-                    htmlFor="staticBirthday"
-                    className="col-sm-2 col-form-label"
-                  >
-                    Birthday
-                  </label>
-                  <div className="col-sm-10">
-                    <input
-                      type="text"
-                      readOnly
-                      className="form-control-plaintext"
-                      id="staticBirthday"
-                      value={
-                        this.state.user ? this.state.user.me.birthday : "null"
-                      }
-                    />
-                  </div>
-                </div>
-                <div className="form-group row">
-                  <label
-                    htmlFor="staticSex"
-                    className="col-sm-2 col-form-label"
-                  >
-                    Sex
-                  </label>
-                  <div className="col-sm-10">
-                    <input
-                      type="text"
-                      readOnly
-                      className="form-control-plaintext"
-                      id="staticSex"
-                      value={this.state.user ? this.state.user.me.sex : "null"}
-                    />
-                  </div>
-                </div>
-                <div className="form-group row">
-                  <label
-                    htmlFor="staticCategories"
-                    className="col-sm-2 col-form-label"
-                  >
-                    Category Options
-                  </label>
-                  <div className="col-sm-10">
-                    <input
-                      type="text"
-                      readOnly
-                      className="form-control-plaintext"
-                      id="staticCategories"
-                      value={
-                        this.state.user
-                          ? this.state.user.me.categoryOptions
-                          : "null"
-                      }
-                    />
-                  </div>
-                </div>
-              </form>
-            </div>
+            <Form>
+              <Form.Group as={Row} controlId="formPlaintextFirstName">
+                <Form.Label column sm="2">
+                  First Name
+                </Form.Label>
+                <Col sm="10">
+                  <Form.Control
+                    plaintext
+                    readOnly
+                    value={
+                      this.state.user ? this.state.user.me.firstName : "null"
+                    }
+                  />
+                </Col>
+              </Form.Group>
+              <Form.Group as={Row} controlId="formPlaintextLastName">
+                <Form.Label column sm="2">
+                  Last Name
+                </Form.Label>
+                <Col sm="10">
+                  <Form.Control
+                    plaintext
+                    readOnly
+                    value={
+                      this.state.user ? this.state.user.me.lastName : "null"
+                    }
+                  />
+                </Col>
+              </Form.Group>
+              <Form.Group as={Row} controlId="formPlaintextEmail">
+                <Form.Label column sm="2">
+                  Email
+                </Form.Label>
+                <Col sm="10">
+                  <Form.Control
+                    plaintext
+                    readOnly
+                    value={this.state.user ? this.state.user.me.email : "null"}
+                  />
+                </Col>
+              </Form.Group>
+              <Form.Group as={Row} controlId="formPlaintextBirthday">
+                <Form.Label column sm="2">
+                  Birthday
+                </Form.Label>
+                <Col sm="10">
+                  <Form.Control
+                    plaintext
+                    readOnly
+                    value={
+                      this.state.user ? this.state.user.me.birthday : "null"
+                    }
+                  />
+                </Col>
+              </Form.Group>
+              <Form.Group as={Row} controlId="formPlaintextSex">
+                <Form.Label column sm="2">
+                  Sex
+                </Form.Label>
+                <Col sm="10">
+                  <Form.Control
+                    plaintext
+                    readOnly
+                    value={this.state.user ? this.state.user.me.sex : "null"}
+                  />
+                </Col>
+              </Form.Group>
+              <Form.Group as={Row} controlId="formPlaintextCategories">
+                <Form.Label column sm="2">
+                  Categories
+                </Form.Label>
+                <Col sm="10">
+                  <Form.Control
+                    plaintext
+                    readOnly
+                    value={
+                      this.state.user
+                        ? this.state.user.me.categoryOptions.map(
+                            category => category.name + " "
+                          )
+                        : "null"
+                    }
+                  />
+                </Col>
+              </Form.Group>
+            </Form>
             <Link
               to="/editprofile"
               className="btn btn-outline-dark btn-lg"
@@ -183,7 +148,7 @@ class Profile extends Component {
             >
               Edit Profile
             </Link>
-            <t />{" "}
+            &nbsp;
             <Link
               to="/events"
               className="btn btn-outline-dark btn-lg"
