@@ -11,6 +11,7 @@ import Footer from "./components/footer";
 import Profile from "./components/pages/profile";
 import EditProfile from "./components/pages/editProfile";
 import Events from "./components/pages/events";
+import NewEvent from "./components/pages/newEvent"
 
 import "./App.css";
 
@@ -29,6 +30,7 @@ class App extends Component {
             <Route path="/profile" component={Profile} />
             <Route path="/editprofile" component={EditProfile} />
             <Route path="/events" component={Events} />
+            <Route path = "/newEvent" component = {NewEvent} />
           </div>
           <div className="fixed-bottom">
             <Footer />
