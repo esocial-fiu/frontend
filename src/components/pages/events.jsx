@@ -42,15 +42,14 @@ class Events extends Component {
   render() {
     return (
       <div>
-        <button><Link to = "/newEvent">Create Event</Link></button>
       <Card
         style={{
           width: "10%",
           marginTop: "30px"
         }}
       >
-        <h1>Events</h1>
-      </Card>
+        <h1>Events</h1> 
+      </Card> <button><Link to = "/newEvent">Create Event</Link></button>
       <br>
       </br>
       
@@ -62,7 +61,8 @@ class Events extends Component {
         >
           <Card.Body>
             <h1>{this.state.events ? this.state.events.events[0].title: "null"}</h1>
-          <button> RSVP </button> 
+            <p1>{this.state.events ? this.state.events.events[0].description: "null"}</p1>
+            <button> RSVP </button> 
           </Card.Body>
       </Card>
       <Card
