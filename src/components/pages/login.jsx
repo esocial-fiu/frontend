@@ -1,9 +1,50 @@
 import React, { Component } from "react";
+import Axios from "axios";
 
 import { Link } from "react-router-dom";
 import { Row, Col, Form, Card, Button } from "react-bootstrap";
 
 class Login extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      user: null,
+      newUser: {
+        log_email: "",
+        log_password: ""
+      }
+    };
+    this.submit = this.submit.bind(this);
+    this.onChange = this.onChange.bind(this);
+  }
+
+  onChange(event) {
+    var newUser = this.state.newUser;
+    newUser[event.target.name] = event.target.value;
+    this.setState({
+      newUser
+    });
+  }
+
+  submit() {
+    Axios({
+      url: "http://ec2-52-23-171-165.compute-1.amazonaws.com:8000/graphql",
+      method: "post",
+      data: {
+        query: `mutation {
+        userLogin(
+          username: "${this.state.newUser.log_email}",
+          password: "${this.state.newUser.log_password}"
+          ){
+            email
+          }
+        }`
+      }
+    }).then(result => {
+      console.log(result);
+    });
+  }
+
   render() {
     return (
       <div
@@ -23,7 +64,13 @@ class Login extends Component {
                   Email
                 </Form.Label>
                 <Col sm={8}>
-                  <Form.Control type="email" placeholder="Email" />
+                  <Form.Control
+                    type="email"
+                    placeholder="Email"
+                    name="log_email"
+                    value={this.state.newUser.log_email}
+                    onChange={this.onChange}
+                  />
                 </Col>
               </Form.Group>
 
@@ -32,7 +79,13 @@ class Login extends Component {
                   Password
                 </Form.Label>
                 <Col sm={8}>
-                  <Form.Control type="password" placeholder="Password" />
+                  <Form.Control
+                    type="password"
+                    placeholder="Password"
+                    name="log_password"
+                    value={this.state.newUser.log_password}
+                    onChange={this.onChange}
+                  />
                 </Col>
               </Form.Group>
 
@@ -44,7 +97,7 @@ class Login extends Component {
 
               <Form.Group as={Row}>
                 <Col sm={{ span: 10, offset: 2 }}>
-                  <Button variant="dark">
+                  <Button variant="dark" onClick={this.submit}>
                     <Link to="/profile" style={{ color: "white" }}>
                       Sign in
                     </Link>

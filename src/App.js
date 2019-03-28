@@ -20,7 +20,7 @@ class App extends Component {
       <Router>
         <div>
           <Navbar />
-          <div>
+          <div style={{ marginBottom: "60px" }}>
             <Route exact path="/" component={Home} />
             <Route path="/about" component={About} />
             <Route path="/faq" component={Faq} />
@@ -30,7 +30,9 @@ class App extends Component {
             <Route path="/editprofile" component={EditProfile} />
             <Route path="/events" component={Events} />
           </div>
-          {/* <Footer /> */}
+          <div className="fixed-bottom">
+            <Footer />
+          </div>
         </div>
       </Router>
     );

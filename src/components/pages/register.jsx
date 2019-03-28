@@ -8,6 +8,7 @@ class Register extends Component {
     super(props);
     this.state = {
       user: null,
+      categories: null,
       newUser: {
         new_f_name: "",
         new_l_name: "",
@@ -41,6 +42,30 @@ class Register extends Component {
     });
   }
 
+  fetchCategories() {
+    const vm = this;
+    Axios({
+      url: "http://ec2-52-23-171-165.compute-1.amazonaws.com:8000/graphql",
+      method: "post",
+      data: {
+        query: `query {
+          categories{
+            name
+             id
+             categoryOptions{
+              name
+              id
+             }
+           }
+        }`
+      }
+    }).then(result => {
+      vm.setState({
+        categories: result.data.data
+      });
+    });
+  }
+
   submit() {
     Axios({
       url: "http://ec2-52-23-171-165.compute-1.amazonaws.com:8000/graphql",
@@ -64,6 +89,10 @@ class Register extends Component {
     }).then(result => {
       console.log(result);
     });
+  }
+
+  componentDidMount() {
+    this.fetchCategories();
   }
 
   render() {
@@ -155,7 +184,11 @@ class Register extends Component {
               </Form.Group>
               <Form.Row>
                 <Form.Group as={Col} controlId="formGridState">
-                  <Form.Label>Hobbies</Form.Label>
+                  <Form.Label>
+                    {this.state.categories
+                      ? this.state.categories.categories[0].name
+                      : "null"}
+                  </Form.Label>
                   <Form.Control
                     as="select"
                     name="0"
@@ -163,13 +196,27 @@ class Register extends Component {
                     onChange={this.onChangeCategory}
                   >
                     <option>Choose...</option>
-                    <option>1</option>
-                    <option>2</option>
+                    <option>
+                      {this.state.categories
+                        ? this.state.categories.categories[0].categoryOptions[0]
+                            .name
+                        : "null"}
+                    </option>
+                    <option>
+                      {this.state.categories
+                        ? this.state.categories.categories[0].categoryOptions[1]
+                            .name
+                        : "null"}
+                    </option>
                   </Form.Control>
                 </Form.Group>
 
                 <Form.Group as={Col} controlId="formGridState">
-                  <Form.Label>Sports</Form.Label>
+                  <Form.Label>
+                    {this.state.categories
+                      ? this.state.categories.categories[1].name
+                      : "null"}
+                  </Form.Label>
                   <Form.Control
                     as="select"
                     name="1"
@@ -177,13 +224,28 @@ class Register extends Component {
                     onChange={this.onChangeCategory}
                   >
                     <option>Choose...</option>
-                    <option>3</option>
-                    <option>4</option>
+                    <option>
+                      {this.state.categories
+                        ? this.state.categories.categories[1].categoryOptions[0]
+                            .name
+                        : "null"}
+                    </option>
+                    <option>
+                      {this.state.categories
+                        ? this.state.categories.categories[1].categoryOptions[1]
+                            .name
+                        : "null"}
+                    </option>
                   </Form.Control>
                 </Form.Group>
 
                 <Form.Group as={Col} controlId="formGridState">
-                  <Form.Label>School Subjects</Form.Label>
+                  <Form.Label>
+                    {" "}
+                    {this.state.categories
+                      ? this.state.categories.categories[2].name
+                      : "null"}
+                  </Form.Label>
                   <Form.Control
                     as="select"
                     name="2"
@@ -191,8 +253,18 @@ class Register extends Component {
                     onChange={this.onChangeCategory}
                   >
                     <option>Choose...</option>
-                    <option>5</option>
-                    <option>6</option>
+                    <option>
+                      {this.state.categories
+                        ? this.state.categories.categories[2].categoryOptions[0]
+                            .name
+                        : "null"}
+                    </option>
+                    <option>
+                      {this.state.categories
+                        ? this.state.categories.categories[2].categoryOptions[1]
+                            .name
+                        : "null"}
+                    </option>
                   </Form.Control>
                 </Form.Group>
               </Form.Row>
@@ -204,7 +276,9 @@ class Register extends Component {
                 />
               </Form.Group>
               <Button variant="dark" type="submit" onClick={this.submit}>
-                Submit
+                <Link to="/profile" style={{ color: "white" }}>
+                  Submit
+                </Link>
               </Button>
               &nbsp;
               <Button variant="dark" type="submit">
