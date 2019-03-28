@@ -63,6 +63,7 @@ class Register extends Component {
       vm.setState({
         categories: result.data.data
       });
+      console.log(this.state.categories.categories[0].categoryOptions);
     });
   }
 
