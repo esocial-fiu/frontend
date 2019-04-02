@@ -53,19 +53,6 @@ class NewEvent extends Component {
                     onChange={this.onChange}
                   />
                 </Form.Group>
-
-                <Form.Group as={Col} controlId="formGridLname">
-                  <Form.Label>Description</Form.Label>
-                  <Form.Control
-                    type="text"
-                    placeholder="Enter a description"
-                    name="new_description"
-                    value={this.state.newEvent.new_description}
-                    onChange={this.onChange}
-                  />
-                </Form.Group>
-              </Form.Row>
-              <Form.Row>
                 <Form.Group as={Col} controlId="formGridEmail">
                   <Form.Label>Location</Form.Label>
                   <Form.Control
@@ -77,32 +64,47 @@ class NewEvent extends Component {
                   />
                 </Form.Group>
               </Form.Row>
-              <Form.Group controlId="formGridBirthday">
-                <Form.Label>Date</Form.Label>
-                <Form.Control
-                  placeholder="MM/DD/YYYY"
-                  name="new_date"
-                  value={this.state.newEvent.new_date}
-                  onChange={this.onChange}
-                />
-              </Form.Group>
-              <Form.Group controlId="formGridPassword">
-                <Form.Label>Max capacity</Form.Label>
-                <Form.Control
-                  type="password"
-                  placeholder="Password"
-                  name="new_max"
-                  value={this.state.newEvent.new_max}
-                  onChange={this.onChange}
-                />
-              </Form.Group>
-              <Form.Group id="formGridCheckbox">
-                <Form.Check
-                  type="checkbox"
-                  required
-                  label="Agree to terms and conditions"
-                />
-              </Form.Group>
+              <Form.Row>
+                <Form.Group controlId="formGridBirthday" as={Col}>
+                  <Form.Label>Date</Form.Label>
+                  <Form.Control
+                    placeholder="MM/DD/YYYY"
+                    name="new_date"
+                    value={this.state.newEvent.new_date}
+                    onChange={this.onChange}
+                  />
+                </Form.Group>
+                <Form.Group controlId="formGridPassword" as={Col}>
+                  <Form.Label>Max capacity</Form.Label>
+                  <Form.Control
+                    type="password"
+                    placeholder="Password"
+                    name="new_max"
+                    value={this.state.newEvent.new_max}
+                    onChange={this.onChange}
+                    as="select"
+                  >
+                    <option>Choose...</option>
+                    <option>Small (up to 5)</option>
+                    <option>Medium (10-15)</option>
+                    <option>Large (15 +)</option>
+                  </Form.Control>
+                </Form.Group>
+              </Form.Row>
+              <Form.Row>
+                <Form.Group as={Col} controlId="formGridLname">
+                  <Form.Label>Description</Form.Label>
+                  <Form.Control
+                    as="textarea"
+                    rows="3"
+                    placeholder="Enter a description"
+                    name="new_description"
+                    value={this.state.newEvent.new_description}
+                    onChange={this.onChange}
+                  />
+                </Form.Group>
+              </Form.Row>
+              <Form.Row />
               <Button variant="dark" type="submit" onClick={this.submit}>
                 <Link to="/profile" style={{ color: "white" }}>
                   Submit
@@ -111,7 +113,7 @@ class NewEvent extends Component {
               &nbsp;
               <Button variant="dark" type="submit">
                 {" "}
-                <Link to="/" style={{ color: "white" }}>
+                <Link to="/events" style={{ color: "white" }}>
                   Cancel
                 </Link>
               </Button>
