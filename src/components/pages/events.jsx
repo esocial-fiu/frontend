@@ -66,6 +66,14 @@ class Events extends Component {
             <h1>
               {this.state.events ? this.state.events.events[0].title : "null"}
             </h1>
+            <p1>
+            Description: {this.state.events ? this.state.events.events[0].description : "null"}
+            </p1>
+            <br></br>
+            <p2>
+            Location: {this.state.events ? this.state.events.events[0].location : "null"}
+            </p2>
+
             <button> RSVP </button>
           </Card.Body>
         </Card>
@@ -76,6 +84,16 @@ class Events extends Component {
           }}
         >
           <Card.Body>
+          <h1>
+              {this.state.events ? this.state.events.events[1].title : "null"}
+            </h1>
+            <p1>
+            Description: {this.state.events ? this.state.events.events[1].description : "null"}
+            </p1>
+            <br></br>
+            <p2>
+            Location: {this.state.events ? this.state.events.events[1].location : "null"}
+            </p2>
             <button> RSVP </button>
           </Card.Body>
         </Card>
@@ -87,6 +105,16 @@ class Events extends Component {
           }}
         >
           <Card.Body>
+          <h1>
+              {this.state.events ? this.state.events.events[2].title : "null"}
+            </h1>
+            <p1>
+            Description: {this.state.events ? this.state.events.events[2].description : "null"}
+            </p1>
+            <br></br>
+            <p2>
+            Location: {this.state.events ? this.state.events.events[2].location : "null"}
+            </p2>
             <button> RSVP </button>
           </Card.Body>
         </Card>
