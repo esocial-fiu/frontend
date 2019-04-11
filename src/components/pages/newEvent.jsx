@@ -13,19 +13,52 @@ class NewEvent extends Component {
         new_description: "",
         new_location: "",
         new_date: "",
-        new_max: "",
-        new_attendees: ["createdBy"]
+        new_max: null,
+        new_created: 1
       }
     };
+
     this.onChange = this.onChange.bind(this);
+    this.submit = this.submit.bind(this);
   }
 
   onChange(event) {
     var newEvent = this.state.newEvent;
+    if (event.target.value === "5") {
+      parseInt(event.target.value, 10);
+    }
     newEvent[event.target.name] = event.target.value;
     this.setState({
       newEvent
     });
+  }
+
+  submit() {
+    console.log(this.state.newEvent.new_max.type);
+    Axios({
+      url: "http://ec2-52-23-171-165.compute-1.amazonaws.com:8000/graphql",
+      method: "post",
+      data: {
+        query: `mutation {
+          createEvent(
+          title: "${this.state.newEvent.new_title}",
+          description: "${this.state.newEvent.new_description}",
+          location: "${this.state.newEvent.new_location}",
+          date: "${this.state.newEvent.new_date}",
+          createdBy: "${this.state.newEvent.new_created}",
+          maxAmountOfPeople: ${this.state.newEvent.new_max}
+          ){
+            title
+          }
+        }`
+      }
+    })
+      .then(result => {
+        console.log(result);
+      })
+      .catch(error => {
+        console.log(error.response);
+      });
   }
 
   render() {
@@ -77,17 +110,17 @@ class NewEvent extends Component {
                 <Form.Group controlId="formGridPassword" as={Col}>
                   <Form.Label>Max capacity</Form.Label>
                   <Form.Control
-                    type="password"
+                    type="number"
                     placeholder="Password"
                     name="new_max"
-                    value={this.state.newEvent.new_max}
+                    value={Number(this.state.newEvent.new_max)}
                     onChange={this.onChange}
                     as="select"
                   >
                     <option>Choose...</option>
-                    <option>Small (up to 5)</option>
-                    <option>Medium (10-15)</option>
-                    <option>Large (15 +)</option>
+                    <option type="number">5</option>
+                    <option type="number">10</option>
+                    <option type="number">15</option>
                   </Form.Control>
                 </Form.Group>
               </Form.Row>
@@ -106,7 +139,7 @@ class NewEvent extends Component {
               </Form.Row>
               <Form.Row />
               <Button variant="dark" type="submit" onClick={this.submit}>
-                <Link to="/profile" style={{ color: "white" }}>
+                <Link to="/events" style={{ color: "white" }}>
                   Submit
                 </Link>
               </Button>

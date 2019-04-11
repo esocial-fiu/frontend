@@ -144,6 +144,7 @@ class EditProfile extends Component {
                 </Form.Label>
                 <Col sm="10">
                   <Form.Control
+                    readOnly
                     placeholder={
                       this.state.user
                         ? this.state.user.me.categoryOptions.map(

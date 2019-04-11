@@ -13,6 +13,8 @@ class Login extends Component {
         log_email: "",
         log_password: ""
       }
+
+      //logUser: {user}
     };
     this.submit = this.submit.bind(this);
     this.onChange = this.onChange.bind(this);
@@ -42,6 +44,7 @@ class Login extends Component {
       }
     }).then(result => {
       console.log(result);
+      // logUser = result;
     });
   }
 
@@ -104,7 +107,7 @@ class Login extends Component {
                   </Button>
                   &nbsp;
                   <Button variant="dark">
-                    <Link to="/profile" style={{ color: "white" }}>
+                    <Link to="/" style={{ color: "white" }}>
                       Forgot Password
                     </Link>
                   </Button>
