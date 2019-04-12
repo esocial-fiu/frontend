@@ -13,8 +13,6 @@ class Login extends Component {
         log_email: "",
         log_password: ""
       }
-
-      //logUser: {user}
     };
     this.submit = this.submit.bind(this);
     this.onChange = this.onChange.bind(this);
@@ -38,14 +36,12 @@ class Login extends Component {
           username: "${this.state.newUser.log_email}",
           password: "${this.state.newUser.log_password}"
           ){
-            email
+            email,
+            password
           }
         }`
       }
-    }).then(result => {
-      console.log(result);
-      // logUser = result;
-    });
+    }).then(result => {});
   }
 
   render() {
@@ -101,7 +97,16 @@ class Login extends Component {
               <Form.Group as={Row}>
                 <Col sm={{ span: 10, offset: 2 }}>
                   <Button variant="dark" onClick={this.submit}>
-                    <Link to="/profile" style={{ color: "white" }}>
+                    <Link
+                      to={{
+                        pathname: "/profile",
+                        state: {
+                          log_email: this.state.newUser.log_email,
+                          log_password: this.state.newUser.log_password
+                        }
+                      }}
+                      style={{ color: "white" }}
+                    >
                       Sign in
                     </Link>
                   </Button>

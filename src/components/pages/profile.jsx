@@ -7,7 +7,11 @@ class Profile extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: null
+      user: null,
+      newUser: {
+        log_email: "",
+        log_password: ""
+      }
     };
   }
 
@@ -17,17 +21,20 @@ class Profile extends Component {
       url: "http://ec2-52-23-171-165.compute-1.amazonaws.com:8000/graphql",
       method: "post",
       data: {
-        query: `query {
-        me{
-          id,
-          firstName,
-          lastName,
-          email,
-          birthday,
-          sex,
-          categoryOptions {
-            name
-          }
+        query: `mutation {
+        userLogin(
+          username: "${this.props.location.state.log_email}",
+          password: "${this.props.location.state.log_password}"
+          ){
+            id,
+            firstName,
+            lastName,
+            email,
+            birthday,
+            sex,
+            categoryOptions {
+              name
+            }
           }
         }`
       }
@@ -65,7 +72,9 @@ class Profile extends Component {
                     plaintext
                     readOnly
                     value={
-                      this.state.user ? this.state.user.me.firstName : "null"
+                      this.state.user
+                        ? this.state.user.userLogin.firstName
+                        : "null"
                     }
                   />
                 </Col>
@@ -79,7 +88,9 @@ class Profile extends Component {
                     plaintext
                     readOnly
                     value={
-                      this.state.user ? this.state.user.me.lastName : "null"
+                      this.state.user
+                        ? this.state.user.userLogin.lastName
+                        : "null"
                     }
                   />
                 </Col>
@@ -92,7 +103,9 @@ class Profile extends Component {
                   <Form.Control
                     plaintext
                     readOnly
-                    value={this.state.user ? this.state.user.me.email : "null"}
+                    value={
+                      this.state.user ? this.state.user.userLogin.email : "null"
+                    }
                   />
                 </Col>
               </Form.Group>
@@ -105,7 +118,9 @@ class Profile extends Component {
                     plaintext
                     readOnly
                     value={
-                      this.state.user ? this.state.user.me.birthday : "null"
+                      this.state.user
+                        ? this.state.user.userLogin.birthday
+                        : "null"
                     }
                   />
                 </Col>
@@ -118,7 +133,9 @@ class Profile extends Component {
                   <Form.Control
                     plaintext
                     readOnly
-                    value={this.state.user ? this.state.user.me.sex : "null"}
+                    value={
+                      this.state.user ? this.state.user.userLogin.sex : "null"
+                    }
                   />
                 </Col>
               </Form.Group>
@@ -132,7 +149,7 @@ class Profile extends Component {
                     readOnly
                     value={
                       this.state.user
-                        ? this.state.user.me.categoryOptions.map(
+                        ? this.state.user.userLogin.categoryOptions.map(
                             category => category.name + " "
                           )
                         : "null"
@@ -155,6 +172,14 @@ class Profile extends Component {
               role="button"
             >
               Events
+            </Link>
+            &nbsp;
+            <Link
+              to="/login"
+              className="btn btn-outline-dark btn-lg"
+              role="button"
+            >
+              Sign Out
             </Link>
           </Card.Body>
         </Card>
