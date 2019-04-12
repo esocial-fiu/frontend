@@ -67,9 +67,6 @@ class EditProfile extends Component {
         >
           <Card.Body>
             <Card.Title>Edit Profile</Card.Title>
-            {/* <Card.Subtitle className="mb-2 text-muted">
-              personal details
-            </Card.Subtitle> */}
             <Form onSubmit={this.handleSubmit}>
               <Form.Group as={Row} controlId="formFirstName">
                 <Form.Label column sm="2">
@@ -107,6 +104,7 @@ class EditProfile extends Component {
                     placeholder={
                       this.state.user ? this.state.user.me.email : "null"
                     }
+                    readonly
                   />
                 </Col>
               </Form.Group>

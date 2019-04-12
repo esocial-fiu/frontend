@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Axios from "axios";
 
 import { Link } from "react-router-dom";
 import { Row, Col, Form, Card, Button } from "react-bootstrap";
@@ -14,7 +13,7 @@ class Login extends Component {
         log_password: ""
       }
     };
-    this.submit = this.submit.bind(this);
+
     this.onChange = this.onChange.bind(this);
   }
 
@@ -24,24 +23,6 @@ class Login extends Component {
     this.setState({
       newUser
     });
-  }
-
-  submit() {
-    Axios({
-      url: "http://ec2-52-23-171-165.compute-1.amazonaws.com:8000/graphql",
-      method: "post",
-      data: {
-        query: `mutation {
-        userLogin(
-          username: "${this.state.newUser.log_email}",
-          password: "${this.state.newUser.log_password}"
-          ){
-            email,
-            password
-          }
-        }`
-      }
-    }).then(result => {});
   }
 
   render() {
@@ -96,7 +77,7 @@ class Login extends Component {
 
               <Form.Group as={Row}>
                 <Col sm={{ span: 10, offset: 2 }}>
-                  <Button variant="dark" onClick={this.submit}>
+                  <Button variant="dark">
                     <Link
                       to={{
                         pathname: "/profile",
