@@ -13,6 +13,8 @@ class Profile extends Component {
         log_password: ""
       }
     };
+
+    this.signOut = this.signOut.bind(this);
   }
 
   fetchUser() {
@@ -32,6 +34,7 @@ class Profile extends Component {
             email,
             birthday,
             sex,
+            password,
             categoryOptions {
               name
             }
@@ -48,6 +51,13 @@ class Profile extends Component {
   componentDidMount() {
     this.fetchUser();
   }
+
+  signOut() {
+    this.setState({
+      user: null
+    });
+  }
+
   render() {
     return (
       <div
@@ -159,7 +169,17 @@ class Profile extends Component {
               </Form.Group>
             </Form>
             <Link
-              to="/editprofile"
+              to={{
+                pathname: "/editprofile",
+                state: {
+                  log_email: this.state.user
+                    ? this.state.user.userLogin.email
+                    : "null",
+                  log_password: this.state.user
+                    ? this.state.user.userLogin.password
+                    : "null"
+                }
+              }}
               className="btn btn-outline-dark btn-lg"
               role="button"
             >
@@ -178,6 +198,7 @@ class Profile extends Component {
               to="/login"
               className="btn btn-outline-dark btn-lg"
               role="button"
+              onClick={this.signOut}
             >
               Sign Out
             </Link>

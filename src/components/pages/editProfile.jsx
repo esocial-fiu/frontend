@@ -17,6 +17,7 @@ class EditProfile extends Component {
         editedCategories: []
       }
     };
+    this.cancel = this.cancel.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -26,17 +27,21 @@ class EditProfile extends Component {
       url: "http://ec2-52-23-171-165.compute-1.amazonaws.com:8000/graphql",
       method: "post",
       data: {
-        query: `query {
-        me{
-          id,
-          firstName,
-          lastName,
-          email,
-          birthday,
-          sex,
-          categoryOptions {
-            name
-          }
+        query: `mutation {
+        userLogin(
+          username: "${this.props.location.state.log_email}",
+          password: "${this.props.location.state.log_password}"
+          ){
+            id,
+            firstName,
+            lastName,
+            email,
+            birthday,
+            sex,
+            password,
+            categoryOptions {
+              name
+            }
           }
         }`
       }
@@ -46,13 +51,23 @@ class EditProfile extends Component {
       });
     });
   }
+
   handleSubmit = event => {
     const ue = event.target.value;
+    // TODO:: edit user fields
     console.log(ue);
   };
+
   componentDidMount() {
     this.fetchUser();
   }
+
+  cancel() {
+    this.setState({
+      user: null
+    });
+  }
+
   render() {
     return (
       <div
@@ -76,7 +91,9 @@ class EditProfile extends Component {
                   <Form.Control
                     type="text"
                     placeholder={
-                      this.state.user ? this.state.user.me.firstName : "null"
+                      this.state.user
+                        ? this.state.user.userLogin.firstName
+                        : "null"
                     }
                     value={this.state.editUser.editedFname}
                     onChange={this.handleSubmit}
@@ -90,7 +107,9 @@ class EditProfile extends Component {
                 <Col sm="10">
                   <Form.Control
                     placeholder={
-                      this.state.user ? this.state.user.me.lastName : "null"
+                      this.state.user
+                        ? this.state.user.userLogin.lastName
+                        : "null"
                     }
                   />
                 </Col>
@@ -102,9 +121,9 @@ class EditProfile extends Component {
                 <Col sm="10">
                   <Form.Control
                     placeholder={
-                      this.state.user ? this.state.user.me.email : "null"
+                      this.state.user ? this.state.user.userLogin.email : "null"
                     }
-                    readonly
+                    readOnly
                   />
                 </Col>
               </Form.Group>
@@ -115,7 +134,9 @@ class EditProfile extends Component {
                 <Col sm="10">
                   <Form.Control
                     placeholder={
-                      this.state.user ? this.state.user.me.birthday : "null"
+                      this.state.user
+                        ? this.state.user.userLogin.birthday
+                        : "null"
                     }
                   />
                 </Col>
@@ -127,7 +148,7 @@ class EditProfile extends Component {
                 <Col sm="10">
                   <Form.Control
                     placeholder={
-                      this.state.user ? this.state.user.me.sex : "null"
+                      this.state.user ? this.state.user.userLogin.sex : "null"
                     }
                     as="select"
                   >
@@ -145,7 +166,7 @@ class EditProfile extends Component {
                     readOnly
                     placeholder={
                       this.state.user
-                        ? this.state.user.me.categoryOptions.map(
+                        ? this.state.user.userLogin.categoryOptions.map(
                             category => category.name + " "
                           )
                         : "null"
@@ -191,9 +212,20 @@ class EditProfile extends Component {
             </Link>
             &nbsp;
             <Link
-              to="/profile"
+              to={{
+                pathname: "/profile",
+                state: {
+                  log_email: this.state.user
+                    ? this.state.user.userLogin.email
+                    : "null",
+                  log_password: this.state.user
+                    ? this.state.user.userLogin.password
+                    : "null"
+                }
+              }}
               className="btn btn-outline-dark btn-lg"
               role="button"
+              onClick={this.cancel}
             >
               Cancel
             </Link>
