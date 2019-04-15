@@ -42,22 +42,24 @@ class Faq extends Component {
             <blockquote className="blockquote mb-0">
               <p>
                 {" "}
-                <cite>Question:</cite> Can I see who is attending an event?{" "}
+                <cite>Question:</cite> Can I delete an event I create?{" "}
               </p>
               <footer className="blockquote-footer">
-                <cite>Answer:</cite> yes, you are able to see anyone who RSVP to
-                any event
+                <cite>Answer:</cite> yes, you are able to delete any event you
+                create but in doing so the people who RSVP will not be able to
+                attend
               </footer>
             </blockquote>
             <hr />
             <blockquote className="blockquote mb-0">
               <p>
                 {" "}
-                <cite>Question:</cite> Can I see who is attending an event?{" "}
+                <cite>Question:</cite> Can I update my profile?{" "}
               </p>
               <footer className="blockquote-footer">
-                <cite>Answer:</cite> yes, you are able to see anyone who RSVP to
-                any event
+                <cite>Answer:</cite> yes, you are able to change your profile
+                but <strong>only</strong> your category options since your
+                profile is created through FIU
               </footer>
             </blockquote>
             <hr />
