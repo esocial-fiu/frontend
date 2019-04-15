@@ -146,6 +146,7 @@ class Events extends Component {
             {this.state.events &&
               this.state.events.events.map((event, index) => (
                 <Card
+                  bg="light"
                   key={index}
                   style={{
                     width: "90%",
@@ -153,8 +154,7 @@ class Events extends Component {
                     borderRadius: "15px"
                   }}
                   className="text-center"
-                  bg="light"
-                  border="secondary"
+                  border="light"
                 >
                   <Card.Body>
                     <Card.Title style={{ fontSize: "30px" }}>
