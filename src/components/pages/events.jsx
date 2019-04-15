@@ -40,46 +40,46 @@ class Events extends Component {
   }
   render() {
     return (
-      <div style={{ marginTop: "50px" }}>
-        <Button variant="dark" type="submit">
-          <Link to="/newEvent" style={{ color: "white" }}>
-            Create Event
-          </Link>
-        </Button>
-        <Card
-          style={{
-            width: "10%",
-            marginTop: "30px"
-          }}
-        >
-          <h1>Events</h1>
-        </Card>
-        <br />
-        <div>
-          {this.state.events &&
-            this.state.events.events.map((event, index) => (
-              <Card
-                key={index}
-                style={{
-                  width: "80%",
-                  marginTop: "30px"
-                }}
-              >
-                <Card.Body>
-                  <Card.Title>{event.title}</Card.Title>
-                  <Card.Text>{event.description}</Card.Text>
-                  <br />
-                  <Card.Subtitle>
-                    {" "}
-                    Loation:{""} {event.location}
-                  </Card.Subtitle>
-                  <br />
-                  <Button variant="dark"> RSVP </Button>
-                </Card.Body>
-              </Card>
-            ))}
-        </div>
-      </div>
+      <Card style={{ background: "rgba(0,0,0,0.001)" }}>
+        <Card.Body>
+          <Card.Title style={{ fontSize: "50px" }}>Events</Card.Title>
+          <Button variant="dark" type="submit">
+            <Link to="/newEvent" style={{ color: "white" }}>
+              Create Event
+            </Link>
+          </Button>
+          <br />
+          <div className="container">
+            {this.state.events &&
+              this.state.events.events.map((event, index) => (
+                <Card
+                  key={index}
+                  style={{
+                    width: "90%",
+                    marginTop: "30px"
+                  }}
+                  className="text-center"
+                  bg="light"
+                  border="secondary"
+                >
+                  <Card.Body>
+                    <Card.Title style={{ fontSize: "30px" }}>
+                      {event.title}
+                    </Card.Title>
+                    <Card.Text>{event.description}</Card.Text>
+                    <br />
+                    <Card.Subtitle>
+                      {" "}
+                      Loation:{""} {event.location}
+                    </Card.Subtitle>
+                    <br />
+                    <Button variant="dark"> RSVP </Button>
+                  </Card.Body>
+                </Card>
+              ))}
+          </div>
+        </Card.Body>
+      </Card>
     );
   }
 }
