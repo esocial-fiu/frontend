@@ -7,6 +7,7 @@ class EditProfile extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      categories: null,
       user: null,
       editUser: {
         editedFname: "",
@@ -14,11 +15,12 @@ class EditProfile extends Component {
         editedEmail: "",
         editedBirthday: "",
         editedSex: "",
-        editedCategories: []
+        editedCategories: ["", "", ""]
       }
     };
     this.cancel = this.cancel.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.onChangeCategory = this.onChangeCategory.bind(this);
   }
 
   fetchUser() {
@@ -52,6 +54,30 @@ class EditProfile extends Component {
     });
   }
 
+  fetchCategories() {
+    const vm = this;
+    Axios({
+      url: "http://ec2-52-23-171-165.compute-1.amazonaws.com:8000/graphql",
+      method: "post",
+      data: {
+        query: `query {
+          categories{
+            name
+             id
+             categoryOptions{
+              name
+              id
+             }
+           }
+        }`
+      }
+    }).then(result => {
+      vm.setState({
+        categories: result.data.data
+      });
+    });
+  }
+
   handleSubmit = event => {
     const ue = event.target.value;
     // TODO:: edit user fields
@@ -60,11 +86,20 @@ class EditProfile extends Component {
 
   componentDidMount() {
     this.fetchUser();
+    this.fetchCategories();
   }
 
   cancel() {
     this.setState({
       user: null
+    });
+  }
+
+  onChangeCategory(event) {
+    var editUser = this.state.editUser;
+    editUser.editedCategories[event.target.name] = event.target.value;
+    this.setState({
+      editUser
     });
   }
 
@@ -176,29 +211,90 @@ class EditProfile extends Component {
               </Form.Group>
               <Form.Row>
                 <Form.Group as={Col} controlId="formGridState">
-                  <Form.Label>Hobbies</Form.Label>
-                  <Form.Control as="select">
+                  <Form.Label>
+                    {" "}
+                    {this.state.categories
+                      ? this.state.categories.categories[0].name
+                      : "null"}
+                  </Form.Label>
+                  <Form.Control
+                    as="select"
+                    name="0"
+                    value={this.state.editUser.editedCategories[0]}
+                    onChange={this.onChangeCategory}
+                  >
                     <option>Choose...</option>
-                    <option>Coding</option>
-                    <option>Roller Skating</option>
+                    <option>
+                      {this.state.categories
+                        ? this.state.categories.categories[0].categoryOptions[0]
+                            .name
+                        : "null"}
+                    </option>
+                    <option>
+                      {" "}
+                      {this.state.categories
+                        ? this.state.categories.categories[0].categoryOptions[1]
+                            .name
+                        : "null"}
+                    </option>
                   </Form.Control>
                 </Form.Group>
 
                 <Form.Group as={Col} controlId="formGridState">
-                  <Form.Label>Sports</Form.Label>
-                  <Form.Control as="select">
+                  <Form.Label>
+                    {this.state.categories
+                      ? this.state.categories.categories[1].name
+                      : "null"}
+                  </Form.Label>
+                  <Form.Control
+                    as="select"
+                    name="1"
+                    value={this.state.editUser.editedCategories[1]}
+                    onChange={this.onChangeCategory}
+                  >
                     <option>Choose...</option>
-                    <option>Soccer</option>
-                    <option>Volleyball</option>
+                    <option>
+                      {this.state.categories
+                        ? this.state.categories.categories[1].categoryOptions[0]
+                            .name
+                        : "null"}
+                    </option>
+                    <option>
+                      {" "}
+                      {this.state.categories
+                        ? this.state.categories.categories[1].categoryOptions[1]
+                            .name
+                        : "null"}
+                    </option>
                   </Form.Control>
                 </Form.Group>
 
                 <Form.Group as={Col} controlId="formGridState">
-                  <Form.Label>School Subjects</Form.Label>
-                  <Form.Control as="select">
+                  <Form.Label>
+                    {" "}
+                    {this.state.categories
+                      ? this.state.categories.categories[2].name
+                      : "null"}
+                  </Form.Label>
+                  <Form.Control
+                    as="select"
+                    name="2"
+                    value={this.state.editUser.editedCategories[2]}
+                    onChange={this.onChangeCategory}
+                  >
                     <option>Choose...</option>
-                    <option>Mathematics</option>
-                    <option>Programming I</option>
+                    <option>
+                      {this.state.categories
+                        ? this.state.categories.categories[2].categoryOptions[0]
+                            .name
+                        : "null"}
+                    </option>
+                    <option>
+                      {this.state.categories
+                        ? this.state.categories.categories[2].categoryOptions[1]
+                            .name
+                        : "null"}
+                    </option>
                   </Form.Control>
                 </Form.Group>
               </Form.Row>
