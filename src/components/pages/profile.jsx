@@ -187,7 +187,17 @@ class Profile extends Component {
             </Link>
             &nbsp;
             <Link
-              to="/events"
+              to={{
+                pathname: "/events",
+                state: {
+                  log_email: this.state.user
+                    ? this.state.user.userLogin.email
+                    : "null",
+                  log_password: this.state.user
+                    ? this.state.user.userLogin.password
+                    : "null"
+                }
+              }}
               className="btn btn-outline-dark btn-lg"
               role="button"
             >

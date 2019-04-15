@@ -7,7 +7,7 @@ class Events extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      events: null
+      user: null
     };
   }
   fetchEvents() {
@@ -48,6 +48,13 @@ class Events extends Component {
               Create Event
             </Link>
           </Button>
+          &nbsp;
+          <Button variant="dark" type="submit">
+            <Link to="/newEvent" style={{ color: "white" }}>
+              My Events
+            </Link>
+          </Button>
+          &nbsp;
           <br />
           <div className="container">
             {this.state.events &&
