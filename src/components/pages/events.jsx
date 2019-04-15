@@ -55,28 +55,30 @@ class Events extends Component {
           <h1>Events</h1>
         </Card>
         <br />
-
-        <Card
-          style={{
-            width: "80%",
-            marginTop: "30px"
-          }}
-        >
-          <Card.Body>
-            <h1>
-              {this.state.events ? this.state.events.events[0].title : "null"}
-            </h1>
-            <p1>
-            Description: {this.state.events ? this.state.events.events[0].description : "null"}
-            </p1>
-            <br></br>
-            <p2>
-            Location: {this.state.events ? this.state.events.events[0].location : "null"}
-            </p2>
-
-            <button> RSVP </button>
-          </Card.Body>
-        </Card>
+        <div>
+          {this.state.events &&
+            this.state.events.events.map((event, index) => (
+              <Card
+                key={index}
+                style={{
+                  width: "80%",
+                  marginTop: "30px"
+                }}
+              >
+                <Card.Body>
+                  <Card.Title>{event.title}</Card.Title>
+                  <Card.Text>{event.description}</Card.Text>
+                  <br />
+                  <Card.Subtitle>
+                    {" "}
+                    Loation:{""} {event.location}
+                  </Card.Subtitle>
+                  <br />
+                  <Button variant="dark"> RSVP </Button>
+                </Card.Body>
+              </Card>
+            ))}
+        </div>
       </div>
     );
   }
