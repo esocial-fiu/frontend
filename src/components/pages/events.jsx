@@ -149,7 +149,8 @@ class Events extends Component {
                   key={index}
                   style={{
                     width: "90%",
-                    marginTop: "30px"
+                    marginTop: "30px",
+                    borderRadius: "15px"
                   }}
                   className="text-center"
                   bg="light"
