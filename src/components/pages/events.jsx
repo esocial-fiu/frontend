@@ -24,6 +24,10 @@ class Events extends Component {
           location,
           date,
           maxAmountOfPeople,
+          createdBy{
+            firstName,
+            lastName
+          }
           }
         }`
       }
@@ -127,11 +131,17 @@ class Events extends Component {
                     </Card.Title>
                     <Card.Text>{event.description}</Card.Text>
                     <br />
+                    <Card.Subtitle>Location: {event.location}</Card.Subtitle>
+                    <br />
                     <Card.Subtitle>
-                      {" "}
-                      Location:{""} {event.location}
-                      <br />
                       Max: {event.maxAmountOfPeople}
+                    </Card.Subtitle>
+                    <br />
+                    <Card.Subtitle>
+                      Hosted by:{" "}
+                      <strong>
+                        {event.createdBy.firstName} {event.createdBy.lastName}{" "}
+                      </strong>
                     </Card.Subtitle>
                     <br />
                     <Button variant="dark" onClick={() => this.rsvp(event.id)}>
