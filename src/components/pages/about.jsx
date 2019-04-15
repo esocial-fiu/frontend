@@ -18,7 +18,8 @@ class About extends Component {
         <Card
           style={{
             width: "100%",
-            marginTop: "30px"
+            marginTop: "30px",
+            borderRadius: "20px"
           }}
         >
           <Card.Body>
