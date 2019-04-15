@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 import { Link } from "react-router-dom";
-import { Row, Col, Form, Card, Button } from "react-bootstrap";
+import { Row, Col, Form, Card } from "react-bootstrap";
 
 class Login extends Component {
   constructor(props) {
@@ -77,26 +77,29 @@ class Login extends Component {
 
               <Form.Group as={Row}>
                 <Col sm={{ span: 10, offset: 2 }}>
-                  <Button variant="dark">
-                    <Link
-                      to={{
-                        pathname: "/profile",
-                        state: {
-                          log_email: this.state.newUser.log_email,
-                          log_password: this.state.newUser.log_password
-                        }
-                      }}
-                      style={{ color: "white" }}
-                    >
-                      Sign in
-                    </Link>
-                  </Button>
+                  <Link
+                    to={{
+                      pathname: "/profile",
+                      state: {
+                        log_email: this.state.newUser.log_email,
+                        log_password: this.state.newUser.log_password
+                      }
+                    }}
+                    style={{ color: "white" }}
+                    role="button"
+                    className="btn btn-dark btn-md"
+                  >
+                    Sign in
+                  </Link>
                   &nbsp;
-                  <Button variant="dark">
-                    <Link to="/" style={{ color: "white" }}>
-                      Forgot Password
-                    </Link>
-                  </Button>
+                  <Link
+                    to="/"
+                    style={{ color: "white" }}
+                    role="button"
+                    className="btn btn-dark btn-md"
+                  >
+                    Forgot Password
+                  </Link>
                 </Col>
               </Form.Group>
             </Form>

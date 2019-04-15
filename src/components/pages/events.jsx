@@ -89,27 +89,53 @@ class Events extends Component {
       <Card style={{ background: "rgba(0,0,0,0.001)" }}>
         <Card.Body>
           <Card.Title style={{ fontSize: "50px" }}>Events</Card.Title>
-          <Button variant="dark" type="submit">
-            <Link
-              to={{
-                pathname: "/newEvent",
-                state: {
-                  log_email: this.props.location.state.log_email,
-                  log_password: this.props.location.state.log_password,
-                  log_id: this.props.location.state.log_id
-                }
-              }}
-              style={{ color: "white" }}
-            >
-              Create Event
-            </Link>
-          </Button>
+          <Link
+            to={{
+              pathname: "/newEvent",
+              state: {
+                log_email: this.props.location.state.log_email,
+                log_password: this.props.location.state.log_password,
+                log_id: this.props.location.state.log_id
+              }
+            }}
+            style={{ color: "white" }}
+            role="button"
+            className="btn btn-dark btn-md"
+          >
+            Create Event
+          </Link>
           &nbsp;
-          <Button variant="dark" type="submit">
-            <Link to="/newEvent" style={{ color: "white" }}>
-              My Events
-            </Link>
-          </Button>
+          <Link
+            to={{
+              pathname: "/newEvent",
+              state: {
+                log_email: this.props.location.state.log_email,
+                log_password: this.props.location.state.log_password,
+                log_id: this.props.location.state.log_id
+              }
+            }}
+            style={{ color: "white" }}
+            role="button"
+            className="btn btn-dark btn-md"
+          >
+            My Events
+          </Link>
+          &nbsp;
+          <Link
+            to={{
+              pathname: "/profile",
+              state: {
+                log_email: this.props.location.state.log_email,
+                log_password: this.props.location.state.log_password,
+                log_id: this.props.location.state.log_id
+              }
+            }}
+            style={{ color: "white" }}
+            role="button"
+            className="btn btn-dark btn-md"
+          >
+            My Profile
+          </Link>
           &nbsp;
           <br />
           <div className="container">

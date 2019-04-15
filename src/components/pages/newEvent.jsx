@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Col, Form, Card, Button } from "react-bootstrap";
+import { Col, Form, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Axios from "axios";
 
@@ -143,36 +143,37 @@ class NewEvent extends Component {
                 </Form.Group>
               </Form.Row>
               <Form.Row />
-              <Button variant="dark" type="submit" onClick={this.submit}>
-                <Link
-                  to={{
-                    pathname: "/profile",
-                    state: {
-                      log_email: this.props.location.state.log_email,
-                      log_password: this.props.location.state.log_password
-                    }
-                  }}
-                  style={{ color: "white" }}
-                >
-                  Submit
-                </Link>
-              </Button>
-              &nbsp;
-              <Button variant="dark" type="submit">
-                {" "}
-                <Link
-                  to={{
-                    pathname: "/events",
-                    state: {
-                      log_email: this.props.location.state.log_email,
-                      log_password: this.props.location.state.log_password
-                    }
-                  }}
-                  style={{ color: "white" }}
-                >
-                  Cancel
-                </Link>
-              </Button>
+              <Link
+                to={{
+                  pathname: "/profile",
+                  state: {
+                    log_email: this.props.location.state.log_email,
+                    log_password: this.props.location.state.log_password
+                  }
+                }}
+                style={{ color: "white" }}
+                onClick={this.submit}
+                role="button"
+                className="btn btn-dark btn-md"
+              >
+                Submit
+              </Link>
+              &nbsp;{" "}
+              <Link
+                to={{
+                  pathname: "/events",
+                  state: {
+                    log_email: this.props.location.state.log_email,
+                    log_password: this.props.location.state.log_password,
+                    log_id: this.props.location.state.log_id
+                  }
+                }}
+                style={{ color: "white" }}
+                role="button"
+                className="btn btn-dark btn-md"
+              >
+                Cancel
+              </Link>
             </Form>
           </Card.Body>
         </Card>

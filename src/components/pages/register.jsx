@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Col, Form, Card, Button } from "react-bootstrap";
+import { Col, Form, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Axios from "axios";
 
@@ -275,18 +275,24 @@ class Register extends Component {
                   label="Agree to terms and conditions"
                 />
               </Form.Group>
-              <Button variant="dark" type="submit" onClick={this.submit}>
-                <Link to="/profile" style={{ color: "white" }}>
-                  Submit
-                </Link>
-              </Button>
-              &nbsp;
-              <Button variant="dark" type="submit">
-                {" "}
-                <Link to="/" style={{ color: "white" }}>
-                  Cancel
-                </Link>
-              </Button>
+              <Link
+                to="/profile"
+                style={{ color: "white" }}
+                onClick={this.submit}
+                role="button"
+                className="btn btn-dark btn-md"
+              >
+                Submit
+              </Link>
+              &nbsp;{" "}
+              <Link
+                to="/"
+                style={{ color: "white" }}
+                role="button"
+                className="btn btn-dark btn-md"
+              >
+                Cancel
+              </Link>
             </Form>
           </Card.Body>
         </Card>
