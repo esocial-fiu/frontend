@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Card, Button } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import Axios from "axios";
 import { Link } from "react-router-dom";
 
@@ -25,6 +25,10 @@ class Events extends Component {
           date,
           maxAmountOfPeople,
           createdBy{
+            firstName,
+            lastName
+          }
+          attendees{
             firstName,
             lastName
           }
@@ -170,10 +174,36 @@ class Events extends Component {
                       </strong>
                     </Card.Subtitle>
                     <br />
-                    <Button variant="dark" onClick={() => this.rsvp(event.id)}>
-                      {" "}
+                    <Card.Subtitle>
+                      Attending:{" "}
+                      {event.attendees
+                        ? event.attendees.map(
+                            attendee =>
+                              attendee.firstName +
+                              " " +
+                              attendee.lastName +
+                              ", "
+                          )
+                        : "null"}
+                    </Card.Subtitle>
+                    <br />
+
+                    <Link
+                      to={{
+                        pathname: "/profile",
+                        state: {
+                          log_email: this.props.location.state.log_email,
+                          log_password: this.props.location.state.log_password,
+                          log_id: this.props.location.state.log_id
+                        }
+                      }}
+                      style={{ color: "white" }}
+                      role="button"
+                      className="btn btn-dark btn-md"
+                      onClick={() => this.rsvp(event.id)}
+                    >
                       RSVP{" "}
-                    </Button>
+                    </Link>
                   </Card.Body>
                 </Card>
               ))}
