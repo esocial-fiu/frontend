@@ -7,7 +7,7 @@ class Home extends Component {
   render() {
     return (
       <React.Fragment>
-        <div className="container">
+        <div className="container text-center">
           <div
             className="jumbotron"
             style={{
@@ -31,27 +31,42 @@ class Home extends Component {
             </Link>
           </div>
 
-          <div className="container">
+          <div className="container text-center">
             <div
-              className="btn-group btn-group-lg"
+              className="btn-group btn-group-lg "
               role="group"
               aria-label="Basic example"
             >
-              <Link to="/register" className="btn btn-dark" role="button">
+              <Link
+                to="/register"
+                className="btn btn-dark"
+                role="button"
+                style={{ borderRadius: "30px" }}
+              >
                 <div
                   style={{
-                    display: "inline",
-                    verticalAlign: "bottom"
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center"
                   }}
                 >
                   <MaterialIcon icon="add_circle" color="#fff" size={25} />
                   &nbsp; Register
                 </div>
               </Link>
-              &nbsp;
-              <Link to="/login" className="btn btn-dark" role="button">
+              &emsp;
+              <Link
+                to="/login"
+                className="btn btn-dark"
+                role="button"
+                style={{ borderRadius: "30px" }}
+              >
                 <div
-                  style={{ justifyContent: "center", display: "inline-block" }}
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center"
+                  }}
                 >
                   <MaterialIcon icon="account_circle" color="#fff" size={25} />
                   &nbsp; Login
