@@ -29,18 +29,19 @@ class About extends Component {
             >
               eSocial
             </Card.Subtitle>
+            &nbsp;
             <Card.Text>
-              The idea started with FIU students who wanted to have a companion
-              so that they wouldn’t eat alone. There is not an application out
-              there that can provide students with the opportunity to meet
-              strangers who share common interests with them. A lot of students
-              are hesitant to approach strangers and would rather be alone than
-              an attempt to make friends. This application would dismiss that
-              fear of approaching a “complete” stranger, and allow users to meet
-              others with common interests. We took the idea of having a meal
-              with a stranger and evolved it into creating social events around
-              campus so a student could decide what activity they choose to meet
-              new friends.
+              &emsp; The idea started with FIU students who wanted to have a
+              companion so that they wouldn’t eat alone. There is not an
+              application out there that can provide students with the
+              opportunity to meet strangers who share common interests with
+              them. A lot of students are hesitant to approach strangers and
+              would rather be alone than an attempt to make friends. This
+              application would dismiss that fear of approaching a “complete”
+              stranger, and allow users to meet others with common interests. We
+              took the idea of having a meal with a stranger and evolved it into
+              creating social events around campus so a student could decide
+              what activity they choose to meet new friends.
             </Card.Text>
             <br />
             <Card.Title>Meet the creators</Card.Title>
@@ -53,12 +54,12 @@ class About extends Component {
                 />
                 <Card.Body>
                   <Card.Title>Alejandro Perez</Card.Title>
-                  <Card.Text>
-                    I’m a developer with more than 7 years of experience on the
+                  <Card.Text style={{ fontStyle: "italic" }}>
+                    "I’m a developer with more than 7 years of experience on the
                     web. I am excited about the project because I think it could
                     really help the students that come from out of town to study
                     here at FIU to find new friends and people with the same
-                    interests.
+                    interests."
                   </Card.Text>
                 </Card.Body>
                 <Card.Footer>
@@ -73,13 +74,13 @@ class About extends Component {
                 />
                 <Card.Body>
                   <Card.Title>Enzo Mendoza</Card.Title>
-                  <Card.Text>
-                    My expertise includes Java, SQL, C, and Python. I have also
+                  <Card.Text style={{ fontStyle: "italic" }}>
+                    "My expertise includes Java, SQL, C, and Python. I have also
                     been praised by previous professors for my writing
                     abilities, so I can use skill to help in the documentation.
                     For this project, however, I am learning HTML, CSS and React
                     as I am partly responsible for the front end of the
-                    application.
+                    application."
                   </Card.Text>
                 </Card.Body>
                 <Card.Footer>
@@ -94,12 +95,12 @@ class About extends Component {
                 />
                 <Card.Body>
                   <Card.Title>Vicente Maselli</Card.Title>
-                  <Card.Text>
-                    Experienced as a full stack developer that has previously
+                  <Card.Text style={{ fontStyle: "italic" }}>
+                    "Experienced as a full stack developer that has previously
                     built an internal single-page application for work using the
                     Waterfall methodology. The stack I have experience is in
                     Angular 6, Material, MS SQL server, REST API in C#. I look
-                    forward to show and teach my fellow peers all my skills.
+                    forward to show and teach my fellow peers all my skills."
                   </Card.Text>
                 </Card.Body>
                 <Card.Footer>
@@ -114,13 +115,13 @@ class About extends Component {
                 />
                 <Card.Body>
                   <Card.Title>Franck Laguerre</Card.Title>
-                  <Card.Text>
-                    I started as a mainframe developer. I have experience with
+                  <Card.Text style={{ fontStyle: "italic" }}>
+                    "I started as a mainframe developer. I have experience with
                     COBOL, Db2, Jcl. I also have experience working with Big
                     data, Java, map reduce, hive. I was introduced to Pega last
                     year and get my CSA certification the same year. I always
-                    want my program to be perfect. I am very good at writing SQL
-                    code. I also have experience working on an agile team.
+                    want my program to be perfect. I also have experience
+                    working on an agile team."
                   </Card.Text>
                 </Card.Body>
                 <Card.Footer>
@@ -129,9 +130,23 @@ class About extends Component {
               </Card>
             </CardDeck>
             <br />
-            <Link to="/register">Join Now</Link>
+            <Link
+              to="/register"
+              style={{ color: "white" }}
+              role="button"
+              className="btn btn-dark btn-md"
+            >
+              Join Now
+            </Link>
             &nbsp; &nbsp;
-            <Link to="/login">Login</Link>
+            <Link
+              to="/login"
+              style={{ color: "white" }}
+              role="button"
+              className="btn btn-dark btn-md"
+            >
+              Login
+            </Link>
           </Card.Body>
         </Card>
       </div>
