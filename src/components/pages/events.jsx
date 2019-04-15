@@ -31,12 +31,51 @@ class Events extends Component {
       em.setState({
         events: result.data.data
       });
-      console.log(result);
     });
+  }
+
+  fetchUser() {
+    const vm = this;
+    Axios({
+      url: "http://ec2-52-23-171-165.compute-1.amazonaws.com:8000/graphql",
+      method: "post",
+      data: {
+        query: `mutation {
+        userLogin(
+          username: "${this.props.location.state.log_email}",
+          password: "${this.props.location.state.log_password}"
+          ){
+            id
+          }
+        }`
+      }
+    }).then(result => {
+      vm.setState({
+        user: result.data.data
+      });
+    });
+  }
+
+  rsvp(eventId) {
+    Axios({
+      url: "http://ec2-52-23-171-165.compute-1.amazonaws.com:8000/graphql",
+      method: "post",
+      data: {
+        query: `mutation {
+          eventRSVP(
+            userId: ${eventId}, 
+            eventId: ${this.state.user.userLogin.id}
+            ){
+               location
+             }
+        }`
+      }
+    }).then(result => {});
   }
 
   componentDidMount() {
     this.fetchEvents();
+    this.fetchUser();
   }
   render() {
     return (
@@ -77,10 +116,15 @@ class Events extends Component {
                     <br />
                     <Card.Subtitle>
                       {" "}
-                      Loation:{""} {event.location}
+                      Location:{""} {event.location}
+                      <br />
+                      Max: {event.maxAmountOfPeople}
                     </Card.Subtitle>
                     <br />
-                    <Button variant="dark"> RSVP </Button>
+                    <Button variant="dark" onClick={() => this.rsvp(event.id)}>
+                      {" "}
+                      RSVP{" "}
+                    </Button>
                   </Card.Body>
                 </Card>
               ))}

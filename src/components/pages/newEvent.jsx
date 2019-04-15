@@ -139,7 +139,7 @@ class NewEvent extends Component {
               </Form.Row>
               <Form.Row />
               <Button variant="dark" type="submit" onClick={this.submit}>
-                <Link to="/events" style={{ color: "white" }}>
+                <Link to="/profile" style={{ color: "white" }}>
                   Submit
                 </Link>
               </Button>
