@@ -10,7 +10,8 @@ class Profile extends Component {
       user: null,
       newUser: {
         log_email: "",
-        log_password: ""
+        log_password: "",
+        log_id: null
       }
     };
 
@@ -195,6 +196,9 @@ class Profile extends Component {
                     : "null",
                   log_password: this.state.user
                     ? this.state.user.userLogin.password
+                    : "null",
+                  log_id: this.state.user
+                    ? this.state.user.userLogin.id
                     : "null"
                 }
               }}

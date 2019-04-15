@@ -15,7 +15,8 @@ class NewEvent extends Component {
         new_date: "",
         new_max: null,
         new_created: 1
-      }
+      },
+      message: ""
     };
 
     this.onChange = this.onChange.bind(this);
@@ -32,9 +33,11 @@ class NewEvent extends Component {
       newEvent
     });
   }
+  componentDidMount() {
+    console.log(this.props.location.state.log_id);
+  }
 
   submit() {
-    console.log(this.state.newEvent.new_max.type);
     Axios({
       url: "http://ec2-52-23-171-165.compute-1.amazonaws.com:8000/graphql",
       method: "post",
@@ -45,7 +48,7 @@ class NewEvent extends Component {
           description: "${this.state.newEvent.new_description}",
           location: "${this.state.newEvent.new_location}",
           date: "${this.state.newEvent.new_date}",
-          createdBy: "${this.state.newEvent.new_created}",
+          createdBy: "${this.props.location.state.log_id}",
           maxAmountOfPeople: ${this.state.newEvent.new_max}
           ){
             title
@@ -121,6 +124,8 @@ class NewEvent extends Component {
                     <option type="number">5</option>
                     <option type="number">10</option>
                     <option type="number">15</option>
+                    <option type="number">20</option>
+                    <option type="number">25</option>
                   </Form.Control>
                 </Form.Group>
               </Form.Row>
@@ -139,14 +144,32 @@ class NewEvent extends Component {
               </Form.Row>
               <Form.Row />
               <Button variant="dark" type="submit" onClick={this.submit}>
-                <Link to="/profile" style={{ color: "white" }}>
+                <Link
+                  to={{
+                    pathname: "/profile",
+                    state: {
+                      log_email: this.props.location.state.log_email,
+                      log_password: this.props.location.state.log_password
+                    }
+                  }}
+                  style={{ color: "white" }}
+                >
                   Submit
                 </Link>
               </Button>
               &nbsp;
               <Button variant="dark" type="submit">
                 {" "}
-                <Link to="/events" style={{ color: "white" }}>
+                <Link
+                  to={{
+                    pathname: "/events",
+                    state: {
+                      log_email: this.props.location.state.log_email,
+                      log_password: this.props.location.state.log_password
+                    }
+                  }}
+                  style={{ color: "white" }}
+                >
                   Cancel
                 </Link>
               </Button>

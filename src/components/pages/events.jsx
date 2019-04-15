@@ -63,27 +63,40 @@ class Events extends Component {
       data: {
         query: `mutation {
           eventRSVP(
-            userId: ${eventId}, 
-            eventId: ${this.state.user.userLogin.id}
+            userId: ${this.state.user.userLogin.id}, 
+            eventId: ${eventId}
             ){
                location
              }
         }`
       }
-    }).then(result => {});
+    }).then(result => {
+      console.log(result);
+    });
   }
 
   componentDidMount() {
     this.fetchEvents();
     this.fetchUser();
   }
+
   render() {
     return (
       <Card style={{ background: "rgba(0,0,0,0.001)" }}>
         <Card.Body>
           <Card.Title style={{ fontSize: "50px" }}>Events</Card.Title>
           <Button variant="dark" type="submit">
-            <Link to="/newEvent" style={{ color: "white" }}>
+            <Link
+              to={{
+                pathname: "/newEvent",
+                state: {
+                  log_email: this.props.location.state.log_email,
+                  log_password: this.props.location.state.log_password,
+                  log_id: this.props.location.state.log_id
+                }
+              }}
+              style={{ color: "white" }}
+            >
               Create Event
             </Link>
           </Button>
