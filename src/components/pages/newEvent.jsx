@@ -151,10 +151,9 @@ class NewEvent extends Component {
                     log_password: this.props.location.state.log_password
                   }
                 }}
-                style={{ color: "white" }}
                 onClick={this.submit}
                 role="button"
-                className="btn btn-dark btn-md"
+                className="btn btn-outline-dark btn-md"
               >
                 Submit
               </Link>
@@ -168,9 +167,8 @@ class NewEvent extends Component {
                     log_id: this.props.location.state.log_id
                   }
                 }}
-                style={{ color: "white" }}
                 role="button"
-                className="btn btn-dark btn-md"
+                className="btn btn-outline-dark btn-md"
               >
                 Cancel
               </Link>

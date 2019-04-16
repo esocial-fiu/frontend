@@ -85,18 +85,16 @@ class Login extends Component {
                         log_password: this.state.newUser.log_password
                       }
                     }}
-                    style={{ color: "white" }}
                     role="button"
-                    className="btn btn-dark btn-md"
+                    className="btn btn-outline-dark btn-md"
                   >
                     Sign in
                   </Link>
                   &nbsp;
                   <Link
                     to="/"
-                    style={{ color: "white" }}
                     role="button"
-                    className="btn btn-dark btn-md"
+                    className="btn btn-outline-dark btn-md"
                   >
                     Forgot Password
                   </Link>

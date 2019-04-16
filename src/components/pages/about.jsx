@@ -133,18 +133,16 @@ class About extends Component {
             <br />
             <Link
               to="/register"
-              style={{ color: "white" }}
               role="button"
-              className="btn btn-dark btn-md"
+              className="btn btn-outline-dark btn-lg"
             >
               Join Now
             </Link>
             &nbsp; &nbsp;
             <Link
               to="/login"
-              style={{ color: "white" }}
               role="button"
-              className="btn btn-dark btn-md"
+              className="btn btn-outline-dark btn-lg"
             >
               Login
             </Link>
