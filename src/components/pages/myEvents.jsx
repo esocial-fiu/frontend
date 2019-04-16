@@ -1,26 +1,32 @@
 import React, { Component } from "react";
-import { Card } from "react-bootstrap";
+import { Card, Badge } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Axios from "axios";
 
 class MyEvents extends Component {
   state = {
-    events: null
+    events: null,
+    hostedEvents: null
   };
 
   fetchMyEvents() {
-    const myEvents = [];
+    const attendingEvents = [];
+
+    const hostingEvents = this.props.location.state.events.events.filter(
+      event => event.createdBy.id === this.props.location.state.log_id
+    );
 
     this.props.location.state.events.events.forEach(element => {
       element.attendees.forEach(attendee => {
         if (attendee.id === this.props.location.state.log_id) {
-          myEvents.push(element);
+          attendingEvents.push(element);
         }
       });
     });
 
     this.setState({
-      events: myEvents
+      events: attendingEvents,
+      hostedEvents: hostingEvents
     });
   }
 
@@ -45,6 +51,24 @@ class MyEvents extends Component {
     });
   }
 
+  cancelEvent(eventId) {
+    Axios({
+      url: "http://ec2-52-23-171-165.compute-1.amazonaws.com:8000/graphql",
+      method: "post",
+      data: {
+        query: `mutation {
+            cancelEvent( 
+              id: ${eventId}
+            ){
+                location
+            }
+          }`
+      }
+    }).catch(error => {
+      console.log(error.response);
+    });
+  }
+
   render() {
     return (
       <div className="container">
@@ -66,6 +90,75 @@ class MyEvents extends Component {
           Events
         </Link>
         <br />
+        <br />
+        <h3>Events I'm Hosting:</h3>
+        {this.state.hostedEvents &&
+          this.state.hostedEvents.map((event, index) => (
+            <Card
+              bg="light"
+              key={index}
+              style={{
+                width: "90%",
+                marginTop: "30px",
+                borderRadius: "15px"
+              }}
+              className="text-center"
+              border="light"
+            >
+              <Card.Body>
+                <h4 className="text-left">
+                  <Badge pill variant="success">
+                    Hosting
+                  </Badge>
+                </h4>
+
+                <Card.Title style={{ fontSize: "30px" }}>
+                  {event.title}
+                </Card.Title>
+                <Card.Text>{event.description}</Card.Text>
+                <br />
+                <Card.Subtitle>Location: {event.location}</Card.Subtitle>
+                <br />
+                <Card.Subtitle>Max: {event.maxAmountOfPeople}</Card.Subtitle>
+                <br />
+                <Card.Subtitle>
+                  Hosted by:{" "}
+                  <strong>
+                    {event.createdBy.firstName} {event.createdBy.lastName}{" "}
+                  </strong>
+                </Card.Subtitle>
+                <br />
+                <Card.Subtitle>
+                  Attending:{" "}
+                  {event.attendees
+                    ? event.attendees.map(
+                        attendee =>
+                          attendee.firstName + " " + attendee.lastName + ", "
+                      )
+                    : "null"}
+                </Card.Subtitle>
+                <br />
+                <Link
+                  to={{
+                    pathname: "/profile",
+                    state: {
+                      log_email: this.props.location.state.log_email,
+                      log_password: this.props.location.state.log_password,
+                      log_id: this.props.location.state.log_id
+                    }
+                  }}
+                  style={{ color: "white" }}
+                  role="button"
+                  className="btn btn-danger btn-md"
+                  onClick={() => this.cancelEvent(event.id)}
+                >
+                  Cancel Event
+                </Link>
+              </Card.Body>
+            </Card>
+          ))}
+        <br />
+        <h3>Events I'm Attending:</h3>
         {this.state.events &&
           this.state.events.map((event, index) => (
             <Card
@@ -80,6 +173,11 @@ class MyEvents extends Component {
               border="light"
             >
               <Card.Body>
+                <h4 className="text-left">
+                  <Badge pill variant="info">
+                    Attending
+                  </Badge>
+                </h4>
                 <Card.Title style={{ fontSize: "30px" }}>
                   {event.title}
                 </Card.Title>
@@ -118,7 +216,7 @@ class MyEvents extends Component {
                   }}
                   style={{ color: "white" }}
                   role="button"
-                  className="btn btn-dark btn-md"
+                  className="btn btn-primary btn-md"
                   onClick={() => this.unRSVP(event.id)}
                 >
                   unRSVP{" "}

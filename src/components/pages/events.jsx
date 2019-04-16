@@ -25,6 +25,7 @@ class Events extends Component {
           date,
           maxAmountOfPeople,
           createdBy{
+            id,
             firstName,
             lastName
           }
@@ -200,7 +201,7 @@ class Events extends Component {
                       }}
                       style={{ color: "white" }}
                       role="button"
-                      className="btn btn-dark btn-md"
+                      className="btn btn-secondary btn-md"
                       onClick={() => this.rsvp(event.id)}
                     >
                       RSVP{" "}
