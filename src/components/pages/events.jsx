@@ -29,6 +29,7 @@ class Events extends Component {
             lastName
           }
           attendees{
+            id,
             firstName,
             lastName
           }
@@ -78,8 +79,6 @@ class Events extends Component {
              }
         }`
       }
-    }).then(result => {
-      console.log(result);
     });
   }
 
@@ -111,11 +110,12 @@ class Events extends Component {
           &nbsp;
           <Link
             to={{
-              pathname: "/newEvent",
+              pathname: "/myevents",
               state: {
                 log_email: this.props.location.state.log_email,
                 log_password: this.props.location.state.log_password,
-                log_id: this.props.location.state.log_id
+                log_id: this.props.location.state.log_id,
+                events: this.state.events
               }
             }}
             style={{ color: "white" }}
