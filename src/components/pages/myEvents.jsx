@@ -72,158 +72,174 @@ class MyEvents extends Component {
   render() {
     return (
       <div className="container">
-        <br />
-        <Link
-          to={{
-            pathname: "/events",
-            state: {
-              log_email: this.props.location.state.log_email,
-              log_password: this.props.location.state.log_password,
-              log_id: this.props.location.state.log_id,
-              events: this.state.events
-            }
-          }}
-          style={{ color: "white" }}
-          role="button"
-          className="btn btn-dark btn-md"
-        >
-          Events
-        </Link>
-        <br />
-        <br />
-        <h3>Events I'm Hosting:</h3>
-        {this.state.hostedEvents &&
-          this.state.hostedEvents.map((event, index) => (
-            <Card
-              bg="light"
-              key={index}
-              style={{
-                width: "90%",
-                marginTop: "30px",
-                borderRadius: "15px"
-              }}
-              className="text-center"
-              border="light"
-            >
-              <Card.Body>
-                <h4 className="text-left">
-                  <Badge pill variant="success">
-                    Hosting
-                  </Badge>
-                </h4>
+        &nbsp;
+        <Card style={{ background: "rgba(0,0,0,0.001)" }} border="dark">
+          <Card.Body>
+            <Card.Title style={{ fontSize: "50px" }}>My Events</Card.Title>
 
-                <Card.Title style={{ fontSize: "30px" }}>
-                  {event.title}
-                </Card.Title>
-                <Card.Text>{event.description}</Card.Text>
-                <br />
-                <Card.Subtitle>Location: {event.location}</Card.Subtitle>
-                <br />
-                <Card.Subtitle>Max: {event.maxAmountOfPeople}</Card.Subtitle>
-                <br />
-                <Card.Subtitle>
-                  Hosted by:{" "}
-                  <strong>
-                    {event.createdBy.firstName} {event.createdBy.lastName}{" "}
-                  </strong>
-                </Card.Subtitle>
-                <br />
-                <Card.Subtitle>
-                  Attending:{" "}
-                  {event.attendees
-                    ? event.attendees.map(
-                        attendee =>
-                          attendee.firstName + " " + attendee.lastName + ", "
-                      )
-                    : "null"}
-                </Card.Subtitle>
-                <br />
-                <Link
-                  to={{
-                    pathname: "/profile",
-                    state: {
-                      log_email: this.props.location.state.log_email,
-                      log_password: this.props.location.state.log_password,
-                      log_id: this.props.location.state.log_id
-                    }
-                  }}
-                  style={{ color: "white" }}
-                  role="button"
-                  className="btn btn-danger btn-md"
-                  onClick={() => this.cancelEvent(event.id)}
-                >
-                  Cancel Event
-                </Link>
-              </Card.Body>
-            </Card>
-          ))}
-        <br />
-        <h3>Events I'm Attending:</h3>
-        {this.state.events &&
-          this.state.events.map((event, index) => (
-            <Card
-              bg="light"
-              key={index}
-              style={{
-                width: "90%",
-                marginTop: "30px",
-                borderRadius: "15px"
+            <Link
+              to={{
+                pathname: "/events",
+                state: {
+                  log_email: this.props.location.state.log_email,
+                  log_password: this.props.location.state.log_password,
+                  log_id: this.props.location.state.log_id,
+                  events: this.state.events
+                }
               }}
-              className="text-center"
-              border="light"
+              style={{ color: "white" }}
+              role="button"
+              className="btn btn-dark btn-lg"
             >
-              <Card.Body>
-                <h4 className="text-left">
-                  <Badge pill variant="info">
-                    Attending
-                  </Badge>
-                </h4>
-                <Card.Title style={{ fontSize: "30px" }}>
-                  {event.title}
-                </Card.Title>
-                <Card.Text>{event.description}</Card.Text>
-                <br />
-                <Card.Subtitle>Location: {event.location}</Card.Subtitle>
-                <br />
-                <Card.Subtitle>Max: {event.maxAmountOfPeople}</Card.Subtitle>
-                <br />
-                <Card.Subtitle>
-                  Hosted by:{" "}
-                  <strong>
-                    {event.createdBy.firstName} {event.createdBy.lastName}{" "}
-                  </strong>
-                </Card.Subtitle>
-                <br />
-                <Card.Subtitle>
-                  Attending:{" "}
-                  {event.attendees
-                    ? event.attendees.map(
-                        attendee =>
-                          attendee.firstName + " " + attendee.lastName + ", "
-                      )
-                    : "null"}
-                </Card.Subtitle>
-                <br />
-
-                <Link
-                  to={{
-                    pathname: "/profile",
-                    state: {
-                      log_email: this.props.location.state.log_email,
-                      log_password: this.props.location.state.log_password,
-                      log_id: this.props.location.state.log_id
-                    }
+              Events
+            </Link>
+            <br />
+            <br />
+            <h3>Events I'm Hosting:</h3>
+            {this.state.hostedEvents &&
+              this.state.hostedEvents.map((event, index) => (
+                <Card
+                  bg="light"
+                  key={index}
+                  style={{
+                    width: "90%",
+                    marginTop: "30px",
+                    borderRadius: "15px"
                   }}
-                  style={{ color: "white" }}
-                  role="button"
-                  className="btn btn-primary btn-md"
-                  onClick={() => this.unRSVP(event.id)}
+                  className="text-center"
+                  border="light"
                 >
-                  unRSVP{" "}
-                </Link>
-              </Card.Body>
-            </Card>
-          ))}
+                  <Card.Body>
+                    <h4 className="text-left">
+                      <Badge pill variant="success">
+                        Hosting
+                      </Badge>
+                    </h4>
+
+                    <Card.Title style={{ fontSize: "30px" }}>
+                      {event.title}
+                    </Card.Title>
+                    <Card.Text>{event.description}</Card.Text>
+                    <br />
+                    <Card.Subtitle>Location: {event.location}</Card.Subtitle>
+                    <br />
+                    <Card.Subtitle>
+                      Max: {event.maxAmountOfPeople}
+                    </Card.Subtitle>
+                    <br />
+                    <Card.Subtitle>
+                      Hosted by:{" "}
+                      <strong>
+                        {event.createdBy.firstName} {event.createdBy.lastName}{" "}
+                      </strong>
+                    </Card.Subtitle>
+                    <br />
+                    <Card.Subtitle>
+                      Attending:{" "}
+                      {event.attendees
+                        ? event.attendees.map(
+                            attendee =>
+                              attendee.firstName +
+                              " " +
+                              attendee.lastName +
+                              ", "
+                          )
+                        : "null"}
+                    </Card.Subtitle>
+                    <br />
+                    <Link
+                      to={{
+                        pathname: "/profile",
+                        state: {
+                          log_email: this.props.location.state.log_email,
+                          log_password: this.props.location.state.log_password,
+                          log_id: this.props.location.state.log_id
+                        }
+                      }}
+                      role="button"
+                      className="btn btn-outline-danger btn-md"
+                      onClick={() => this.cancelEvent(event.id)}
+                    >
+                      Cancel Event
+                    </Link>
+                  </Card.Body>
+                </Card>
+              ))}
+            <br />
+            <hr />
+            <br />
+            <h3>Events I'm Attending:</h3>
+            {this.state.events &&
+              this.state.events.map((event, index) => (
+                <Card
+                  bg="light"
+                  key={index}
+                  style={{
+                    width: "90%",
+                    marginTop: "30px",
+                    borderRadius: "15px"
+                  }}
+                  className="text-center"
+                  border="light"
+                >
+                  <Card.Body>
+                    <h4 className="text-left">
+                      <Badge pill variant="info">
+                        Attending
+                      </Badge>
+                    </h4>
+                    <Card.Title style={{ fontSize: "30px" }}>
+                      {event.title}
+                    </Card.Title>
+                    <Card.Text>{event.description}</Card.Text>
+                    <br />
+                    <Card.Subtitle>Location: {event.location}</Card.Subtitle>
+                    <br />
+                    <Card.Subtitle>
+                      Max: {event.maxAmountOfPeople}
+                    </Card.Subtitle>
+                    <br />
+                    <Card.Subtitle>
+                      Hosted by:{" "}
+                      <strong>
+                        {event.createdBy.firstName} {event.createdBy.lastName}{" "}
+                      </strong>
+                    </Card.Subtitle>
+                    <br />
+                    <Card.Subtitle>
+                      Attending:{" "}
+                      {event.attendees
+                        ? event.attendees.map(
+                            attendee =>
+                              attendee.firstName +
+                              " " +
+                              attendee.lastName +
+                              ", "
+                          )
+                        : "null"}
+                    </Card.Subtitle>
+                    <br />
+
+                    <Link
+                      to={{
+                        pathname: "/profile",
+                        state: {
+                          log_email: this.props.location.state.log_email,
+                          log_password: this.props.location.state.log_password,
+                          log_id: this.props.location.state.log_id
+                        }
+                      }}
+                      role="button"
+                      className="btn btn-outline-warning btn-md"
+                      onClick={() => this.unRSVP(event.id)}
+                    >
+                      unRSVP{" "}
+                    </Link>
+                  </Card.Body>
+                </Card>
+              ))}
+          </Card.Body>
+        </Card>
       </div>
     );
   }

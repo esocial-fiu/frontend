@@ -90,128 +90,131 @@ class Events extends Component {
 
   render() {
     return (
-      <Card style={{ background: "rgba(0,0,0,0.001)" }}>
-        <Card.Body>
-          <Card.Title style={{ fontSize: "50px" }}>Events</Card.Title>
-          <Link
-            to={{
-              pathname: "/newEvent",
-              state: {
-                log_email: this.props.location.state.log_email,
-                log_password: this.props.location.state.log_password,
-                log_id: this.props.location.state.log_id
-              }
-            }}
-            style={{ color: "white" }}
-            role="button"
-            className="btn btn-dark btn-md"
-          >
-            Create Event
-          </Link>
-          &nbsp;
-          <Link
-            to={{
-              pathname: "/myevents",
-              state: {
-                log_email: this.props.location.state.log_email,
-                log_password: this.props.location.state.log_password,
-                log_id: this.props.location.state.log_id,
-                events: this.state.events
-              }
-            }}
-            style={{ color: "white" }}
-            role="button"
-            className="btn btn-dark btn-md"
-          >
-            My Events
-          </Link>
-          &nbsp;
-          <Link
-            to={{
-              pathname: "/profile",
-              state: {
-                log_email: this.props.location.state.log_email,
-                log_password: this.props.location.state.log_password,
-                log_id: this.props.location.state.log_id
-              }
-            }}
-            style={{ color: "white" }}
-            role="button"
-            className="btn btn-dark btn-md"
-          >
-            My Profile
-          </Link>
-          &nbsp;
-          <br />
-          <div className="container">
-            {this.state.events &&
-              this.state.events.events.map((event, index) => (
-                <Card
-                  bg="light"
-                  key={index}
-                  style={{
-                    width: "90%",
-                    marginTop: "30px",
-                    borderRadius: "15px"
-                  }}
-                  className="text-center"
-                  border="light"
-                >
-                  <Card.Body>
-                    <Card.Title style={{ fontSize: "30px" }}>
-                      {event.title}
-                    </Card.Title>
-                    <Card.Text>{event.description}</Card.Text>
-                    <br />
-                    <Card.Subtitle>Location: {event.location}</Card.Subtitle>
-                    <br />
-                    <Card.Subtitle>
-                      Max: {event.maxAmountOfPeople}
-                    </Card.Subtitle>
-                    <br />
-                    <Card.Subtitle>
-                      Hosted by:{" "}
-                      <strong>
-                        {event.createdBy.firstName} {event.createdBy.lastName}{" "}
-                      </strong>
-                    </Card.Subtitle>
-                    <br />
-                    <Card.Subtitle>
-                      Attending:{" "}
-                      {event.attendees
-                        ? event.attendees.map(
-                            attendee =>
-                              attendee.firstName +
-                              " " +
-                              attendee.lastName +
-                              ", "
-                          )
-                        : "null"}
-                    </Card.Subtitle>
-                    <br />
+      <div className="container">
+        &nbsp;
+        <Card style={{ background: "rgba(0,0,0,0.001)" }} border="dark">
+          <Card.Body>
+            <Card.Title style={{ fontSize: "50px" }}>Events</Card.Title>
+            <Link
+              to={{
+                pathname: "/newEvent",
+                state: {
+                  log_email: this.props.location.state.log_email,
+                  log_password: this.props.location.state.log_password,
+                  log_id: this.props.location.state.log_id
+                }
+              }}
+              style={{ color: "white" }}
+              role="button"
+              className="btn btn-dark btn-lg"
+            >
+              Create Event
+            </Link>
+            &nbsp;
+            <Link
+              to={{
+                pathname: "/myevents",
+                state: {
+                  log_email: this.props.location.state.log_email,
+                  log_password: this.props.location.state.log_password,
+                  log_id: this.props.location.state.log_id,
+                  events: this.state.events
+                }
+              }}
+              style={{ color: "white" }}
+              role="button"
+              className="btn btn-dark btn-lg"
+            >
+              My Events
+            </Link>
+            &nbsp;
+            <Link
+              to={{
+                pathname: "/profile",
+                state: {
+                  log_email: this.props.location.state.log_email,
+                  log_password: this.props.location.state.log_password,
+                  log_id: this.props.location.state.log_id
+                }
+              }}
+              style={{ color: "white" }}
+              role="button"
+              className="btn btn-dark btn-lg"
+            >
+              My Profile
+            </Link>
+            &nbsp;
+            <br />
+            <div className="container">
+              {this.state.events &&
+                this.state.events.events.map((event, index) => (
+                  <Card
+                    bg="light"
+                    key={index}
+                    style={{
+                      width: "90%",
+                      marginTop: "30px",
+                      borderRadius: "15px"
+                    }}
+                    className="text-center"
+                    border="light"
+                  >
+                    <Card.Body>
+                      <Card.Title style={{ fontSize: "30px" }}>
+                        {event.title}
+                      </Card.Title>
+                      <Card.Text>{event.description}</Card.Text>
+                      <br />
+                      <Card.Subtitle>Location: {event.location}</Card.Subtitle>
+                      <br />
+                      <Card.Subtitle>
+                        Max: {event.maxAmountOfPeople}
+                      </Card.Subtitle>
+                      <br />
+                      <Card.Subtitle>
+                        Hosted by:{" "}
+                        <strong>
+                          {event.createdBy.firstName} {event.createdBy.lastName}{" "}
+                        </strong>
+                      </Card.Subtitle>
+                      <br />
+                      <Card.Subtitle>
+                        Attending:{" "}
+                        {event.attendees
+                          ? event.attendees.map(
+                              attendee =>
+                                attendee.firstName +
+                                " " +
+                                attendee.lastName +
+                                ", "
+                            )
+                          : "null"}
+                      </Card.Subtitle>
+                      <br />
 
-                    <Link
-                      to={{
-                        pathname: "/profile",
-                        state: {
-                          log_email: this.props.location.state.log_email,
-                          log_password: this.props.location.state.log_password,
-                          log_id: this.props.location.state.log_id
-                        }
-                      }}
-                      style={{ color: "white" }}
-                      role="button"
-                      className="btn btn-secondary btn-md"
-                      onClick={() => this.rsvp(event.id)}
-                    >
-                      RSVP{" "}
-                    </Link>
-                  </Card.Body>
-                </Card>
-              ))}
-          </div>
-        </Card.Body>
-      </Card>
+                      <Link
+                        to={{
+                          pathname: "/profile",
+                          state: {
+                            log_email: this.props.location.state.log_email,
+                            log_password: this.props.location.state
+                              .log_password,
+                            log_id: this.props.location.state.log_id
+                          }
+                        }}
+                        role="button"
+                        className="btn btn-outline-primary btn-md"
+                        onClick={() => this.rsvp(event.id)}
+                      >
+                        RSVP{" "}
+                      </Link>
+                    </Card.Body>
+                  </Card>
+                ))}
+            </div>
+          </Card.Body>
+        </Card>
+      </div>
     );
   }
 }

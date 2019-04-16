@@ -101,6 +101,13 @@ class Login extends Component {
                     Forgot Password
                   </Link>
                 </Col>
+                <br />
+                <br />
+                <Form.Group as={Row}>
+                  <Col sm={{ span: 12, offset: 7 }}>
+                    <Link to="/register">don't have an account?</Link>
+                  </Col>
+                </Form.Group>
               </Form.Group>
             </Form>
           </Card.Body>
