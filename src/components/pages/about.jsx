@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
 import CardDeck from "react-bootstrap/CardDeck";
-import pic from "../../images/home1.jpg";
 import ale from "../../images/alejandro.jpg";
 import franck from "../../images/franck.jpg";
 import vicente2 from "../../images/vicente.jpg";
+import enzo from "../../images/enzo.jpg";
 
 class About extends Component {
   state = {};
@@ -70,7 +70,7 @@ class About extends Component {
               <Card>
                 <Card.Img
                   variant="top"
-                  src={pic}
+                  src={enzo}
                   style={{ height: "250px", width: "100%" }}
                 />
                 <Card.Body>
